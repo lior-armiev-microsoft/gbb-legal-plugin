@@ -1,0 +1,41 @@
+id: template_standard_flow
+name: Template Standard Flow
+inputs:
+  input:
+    type: object
+    is_chat_input: false
+outputs:
+  out:
+    type: string
+    reference: ${GeneralQuestion.output}
+nodes:
+- name: clasification
+  type: python
+  source:
+    type: code
+    path: echo.py
+  inputs:
+    input: ${inputs.input}
+  use_variants: false
+- name: GeneralQuestion
+  type: llm
+  source:
+    type: code
+    path: GeneralQuestion.jinja2
+  inputs:
+    deployment_name: gpt4o-mini
+    temperature: 1
+    top_p: 1
+    max_tokens: 500
+    response_format:
+      type: text
+    question: ${clasification.output.query}
+    selection: ${clasification.output.input}
+  provider: AzureOpenAI
+  connection: gbbailiortestopenai1
+  api: chat
+  module: promptflow.tools.aoai
+  use_variants: false
+node_variants: {}
+environment:
+  python_requirements_txt: requirements.txt

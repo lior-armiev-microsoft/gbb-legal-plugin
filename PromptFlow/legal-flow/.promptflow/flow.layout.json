@@ -1,0 +1,55 @@
+{
+  "orientation": "Vertical",
+  "nodeLayouts": {
+    "inputs": {
+      "x": 122,
+      "y": 62,
+      "index": -1
+    },
+    "outputs": {
+      "x": 177.5,
+      "y": 612,
+      "index": -1
+    },
+    "clasification": {
+      "x": 122,
+      "y": 172,
+      "height": 75,
+      "index": 0
+    },
+    "GeneralQuestion": {
+      "x": -61,
+      "y": 279,
+      "height": 75,
+      "index": 1
+    },
+    "SearchPolicy": {
+      "x": 280,
+      "y": 284,
+      "height": 75,
+      "index": 2
+    },
+    "ExtactPolicys": {
+      "x": 233,
+      "y": 392,
+      "height": 75,
+      "index": 3
+    },
+    "ReWriteSelection": {
+      "x": 177.5,
+      "y": 502,
+      "height": 75,
+      "index": 4
+    }
+  },
+  "viewport": {
+    "transformMatrix": [
+      1,
+      0,
+      0,
+      1,
+      70,
+      -41
+    ]
+  }
+}

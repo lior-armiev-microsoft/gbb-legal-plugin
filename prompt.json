@@ -1,0 +1,16 @@
+[{
+    "name": "ask",
+    "prompt": "What is your name?",
+    "maxtokens": 100
+},
+{
+    "name": "review",
+    "prompt": "What is your review of this product?",
+    "maxtokens": 100
+},
+{
+    "name" : "rewrite",
+    "prompt": "Rewrite the following sentence: 'The quick brown fox jumps over the lazy dog.'",
+    "maxtokens": 100
+}
+]

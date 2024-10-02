@@ -1,0 +1,114 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+<!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contoso Task Pane Add-in</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+    
+    <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css"/>
+
+    <!-- Template styles -->
+    <link href="configpane.css" rel="stylesheet" type="text/css" />
+    <style>
+    </style>
+</head>
+
+<body class="ms-font-m ms-welcome ms-Fabric">
+    <!-- The ribbon at the top of the page -->
+    <div class="warning-ribbon" style="display: none;">
+        <span>Configuration Saved Successfully</span>
+      </div>
+
+    <header class="ms-welcome__header ms-bgColor-neutralLighter">
+        <p class="ms-font-xxl ms-fontWeight-semilight">GBB Lawyer App</p>
+    </header>
+    
+    <section id="sideload-msg" class="ms-welcome__main" style="display: none;">
+        <h2 class="ms-font-xl">Please <a target="_blank" href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing">sideload</a> your add-in to see app body.</h2>
+    </section>
+
+    <main id="app-body" class="ms-welcome__main" style="display: none;">
+
+        
+        <div class="container" id="config-container">
+            <h3>Configuration</h3>
+            <p>Configure your Azure OpenAI and Azure Search</p>                   
+
+            <div class="container">
+            <h4>Azure OpenAI</h4>
+            <label for="azure-openai-key">Key:</label><br>
+            <input type="password" class="config-input" id="azure-openai-key" name="azure-openai-key" placeholder="Enter your Azure OpenAI Key">
+                <br>
+                    <label for="azure-openai-endpoint">Endpoint:</label>
+                    <input type="text" class="config-input" id="azure-openai-endpoint" name="azure-openai-endpoint" placeholder="Enter your Azure OpenAI Endpoint">
+                <br>
+                    <label for="azure-openai-model-name">Model Name:</label>
+                    <input type="text" class="config-input" id="azure-openai-model-name" name="azure-openai-model-name" placeholder="Enter your Azure OpenAI Model Name">
+                <br>
+                    <label for="azure-openai-api-vesrion">API Version:</label>
+                    <input type="text" class="config-input" id="azure-openai-api-version" name="azure-openai-api-version" placeholder="2024-02-15-preview">
+                <br>
+                    <label for="azure-openai-model-embedding">Embeding Model Name:</label>
+                    <input type="text" class="config-input" id="azure-openai-model-embedding" name="azure-openai-model-embedding" placeholder="Enter your Azure OpenAI Embedding Model Name">
+            </div>
+            <br>
+            <div class="container">
+                <h4>Search Configuration</h4>
+                    <label for="azure-config-search-key">Key:</label><br>
+                    <input type="password" class="config-input" id="azure-search-key" name="azure-seasrch-key" placeholder="Enter your Azure Search Key">
+                <br>
+                    <label for="azure-config-search-endpoint">Endpoint:</label>
+                    <input type="text" class="config-input" id="azure-search-endpoint" name="azure-search-endpoint" placeholder="Enter your Azure Search Endpoint">
+                <br>
+                    <label for="azure-config-search-index">Index Name:</label>
+                    <input type="text" class="config-input" id="azure-search-index" name="azure-search-index" placeholder="Enter your Azure Search Index Name">
+            </div>
+            <br>
+
+            <div class="container">
+                <h4>Prompt Configuration</h4>
+                <label>Prompt 1:</label><br>
+                <textarea id="azure-prompt-ask" style="width: 92%; height: auto; overflow-wrap: break-word; resize: none;"></textarea>
+                <br>
+                <input type="number" id="azure-prompt-ask-max-tokens" name="azure-prompt-ask-max-tokens" placeholder="Enter Answer Max Tokens">
+                <br>
+                <label>Prompt 1:</label><br>
+                <textarea id="azure-prompt-complince" style="width: 92%; height: auto; overflow-wrap: break-word; resize: none;"></textarea>
+                <br>
+                <input type="number" id="azure-prompt-complince-max-tokens" name="azure-prompt-complince-max-tokens" placeholder="Enter Answer Max Tokens">
+                <br>
+
+            </div>
+
+            <button class="ms-Button ms-Button--primary config-button" id="configuration-save"><span class="ms-Button-label">Save Configuration</span></button>
+        </div>
+
+        
+
+    </main>
+</body>
+
+</html>
+<script>
+    const textarea1 = document.getElementById('azure-prompt-ask');
+    const textarea2 = document.getElementById('azure-prompt-complince');
+    textarea1.addEventListener('input', function () {
+        this.style.height = 'auto'; // Reset the height to auto before recalculating
+        this.style.height = (this.scrollHeight) + 'px'; // Adjust height based on scrollHeight
+        });
+    textarea2.addEventListener('input', function () {
+    this.style.height = 'auto'; // Reset the height to auto before recalculating
+    this.style.height = (this.scrollHeight) + 'px'; // Adjust height based on scrollHeight
+    });
+        
+
+</script>

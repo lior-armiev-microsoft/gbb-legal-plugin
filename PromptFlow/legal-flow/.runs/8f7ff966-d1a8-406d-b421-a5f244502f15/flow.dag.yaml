@@ -1,0 +1,31 @@
+id: template_standard_flow
+name: Template Standard Flow
+inputs:
+  input:
+    type: object
+    is_chat_input: false
+outputs:
+  out:
+    type: string
+    reference: ${GeneralQA.output}
+nodes:
+- name: clasification
+  type: python
+  source:
+    type: code
+    path: echo.py
+  inputs:
+    input: ${inputs.input}
+  use_variants: false
+- name: GeneralQA
+  type: prompt
+  source:
+    type: code
+    path: GeneralQA.jinja2
+  inputs:
+    question: ${clasification.output.query}
+    selection: ${clasification.output.input}
+  use_variants: false
+node_variants: {}
+environment:
+  python_requirements_txt: requirements.txt
