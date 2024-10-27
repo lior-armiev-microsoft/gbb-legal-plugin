@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contoso Task Pane Add-in</title>
+    <title>GBB Leagal Add-in</title>
 
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
@@ -18,95 +18,15 @@
 
     <!-- Template styles -->
     <link href="taskpane.css" rel="stylesheet" type="text/css" />
-    <style>
-        .container {
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
-            background-color: #fff;
-            width: 90%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            margin-top: 0;
-            font-size: 1.2em;
-            color: #333;
-        }
-        .search-input {
-            width: 92%;
-            padding: 8px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .search-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #113b51;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-        .search-button:hover {
-            background-color: #45788b;
-        }
-        .gauge {
-            position: relative;
-            width: 200px;
-            height: 100px;
-            margin: 0 auto 20px auto;
-        }
-        .arrow {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-top: 20px solid #000;
-            left: 50%;
-            top: 100%;
-            transform-origin: center bottom;
-        }
-        .checklist {
-            text-align: left;
-        }
-        .checklist li {
-            list-style: none;
-            margin: 10px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-        .checklist li:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-        }
-        .green:before {
-            background-color: #4caf50;
-        }
-        .yellow:before {
-            background-color: #ffeb3b;
-        }
-        .red:before {
-            background-color: #f44336;
-        }
-
+    <style>    
     </style>
 </head>
 
 <body class="ms-font-m ms-welcome ms-Fabric">
-    <header class="ms-welcome__header ms-bgColor-neutralLighter">
-        <img width="90" height="90" src="../../assets/logo-filled.png" alt="Contoso" title="Contoso" />
-        <h1 class="ms-font-xxl ms-fontWeight-semilight">GBB Lawyer App</h1>
-    </header>
+    <!-- <header class="ms-welcome__header ms-bgColor-neutralLighter">
+        <img width="90" height="90" src="../../assets/logo-filled.png" alt="GBB" title="GBB" />
+        <h1 class="ms-font-xxl ms-fontWeight-semilight">GBB Leagal App</h1>
+    </header> -->
 
     <div class="warning-ribbon" style="display: none;">
         <span>Indexed Document Successfully</span>
@@ -115,9 +35,12 @@
     <section id="sideload-msg" class="ms-welcome__main" style="display: none;">
         <div class="spinner"></div><h1>Checking AI configuration, please wait...</h1>
     </section>
-
+    
     <main id="app-body" class="ms-welcome__main" style="display: none;">
         <!-- Description -->
+        <h1 class="ms-font-xxl">GBB Leagal App</h1>
+
+
         <h2 class="ms-font-xl"> Discover the many ways Azure OpenAI Service can help you draft and review your contracts more efficiently.</h2>
         <ul class="ms-List ms-welcome__features">
             <li class="ms-ListItem">
@@ -142,13 +65,41 @@
             <p>Your document seems to be <b>not</b> Indexed, For all Ai functions to work you must press the Index button</p>
             <p>This process may take a few minutes</p>
             <p>Index your contract to enable semantic search and review</p>
+            <div id="index-doc-spinner" style="display: none;" class="spinner"></div>
             <button class="ms-Button ms-Button--primary search-button" id="index-doc-button">
                 <span class="ms-Button-label">Index Now</span>
             </button>
         </div>
         <br>
+
+        <div id="summary-container" class="container">
+            <h2>Summary</h2>
+            <p>Summarize the document to get a quick overview of the key clauses and provisions</p>
+            <div id="summary-spinner" style="display: none;" class="spinner"></div>
+            <button class="ms-Button ms-Button--primary search-button" id="fetchSummaryData">
+                <span class="ms-Button-label">Summarize Document</span>
+            </button>
+            <div id="summary-content"></div> <!-- This will hold the dynamic content -->
+        </div>
+        
+        <br>
+
+
+        <div id="policy-container" class="container">
+            <h2>Review</h2>
+            <p>Make a risk assessment of key contract clauses compared to your organizational standard. </p>
+            <p>This button will review the document based on organizational standard</p>
+            <p>If Text is been selected the check will be done on the selected text</p>
+            <div id="policy-spinner" style="display: none;" class="spinner"></div>
+            <button class="ms-Button ms-Button--primary search-button" id="fetchPolicyData">
+            <span class="ms-Button-label">Check Policies</span>
+            </button>            
+        </div>
+        <br>
+
+
         <!--- Ask Button -->
-        <div class="container">            
+        <div class="container" style="display: none;">
             <h2>Ask</h2>
             <p>Chat with your contract to uncover the general meaning of the various provisions</p>
             <div role="button" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
@@ -181,8 +132,10 @@
             </button>
         </div>
         <br>
+
+
         <!--- Re-Mark Button -->
-        <div class="container">
+        <div class="container" style="display: none;">
             <h2>Verify</h2>
             <p>Using semantic search you can uncover hidden instances of legal clauses in the contract to mitigate risk.</p>
             
@@ -204,6 +157,8 @@
                 <span class="ms-Button-label">Review Selected</span> 
             </button>
         </div>
+
+        
         <div class="container" style="display: none;" id="review-container">
             <div class="gauge">
                 <svg viewBox="0 0 100 50" width="200" height="100">

@@ -1,0 +1,9 @@
+
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
+name: "azuresearch"
+type: custom
+configs:
+  endpoint: "https://gbbsearchtest1.search.windows.net"
+secrets:
+  # Use'<no-change>' to keep original value or '<user-input>' to update it when the application runs.
+  key: "<no-change>"

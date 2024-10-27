@@ -1,0 +1,93 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  chat_history:
+    type: list
+    is_chat_history: true
+    default: []
+  question:
+    type: string
+    is_chat_input: true
+    default: "(a)\tThe Contract shall be governed by and construed in accordance
+      with the laws of Singapore, without reference to its conflict of laws
+      rules. "
+  query_type:
+    type: int
+    default: 2
+outputs:
+  answer:
+    type: string
+    reference: ${aggregation.output}
+    is_chat_output: true
+nodes:
+- name: list_policys
+  type: python
+  source:
+    type: code
+    path: list_policys.py
+  inputs:
+    searchconnection: azuresearch
+    input: ${inputs.question}
+  activate:
+    when: ${inputs.query_type}
+    is: 0
+- name: summary_document
+  type: python
+  source:
+    type: code
+    path: summary_document.py
+  inputs:
+    openai: lioropenaitest
+    input_text: ${inputs.question}
+    policy_list: ${list_policys.output}
+- name: selection_summary
+  type: python
+  source:
+    type: code
+    path: documen_summary.py
+  inputs:
+    openai: lioropenaitest
+    policy_list: ${search_policy.output}
+    input_text: ${inputs.question}
+- name: search_policy
+  type: python
+  source:
+    type: code
+    path: search_policy.py
+  inputs:
+    searchconnection: azuresearch
+    embeding: ${text_embedding.output}
+- name: text_embedding
+  type: python
+  source:
+    type: package
+    tool: promptflow.tools.embedding.embedding
+  inputs:
+    connection: lioropenaitest
+    deployment_name: ada002
+    input: ${inputs.question}
+  activate:
+    when: ${inputs.query_type}
+    is: 2
+- name: aggregation
+  type: python
+  source:
+    type: code
+    path: aggregation.py
+  inputs:
+    input1: ${selection_summary.output}
+    input2: ${summary_document.output}
+    input3: ${summary_full_doc.output}
+  aggregation: false
+- name: summary_full_doc
+  type: python
+  source:
+    type: code
+    path: summary_full_doc.py
+  inputs:
+    openai: lioropenaitest
+    input_text: ${inputs.question}
+  activate:
+    when: ${inputs.query_type}
+    is: 1

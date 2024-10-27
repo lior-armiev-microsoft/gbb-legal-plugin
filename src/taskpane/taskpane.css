@@ -23,6 +23,7 @@
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
     align-items: center;
  }
@@ -31,12 +32,14 @@
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
     -webkit-flex-wrap: nowrap;
     flex-wrap: nowrap;
     -webkit-align-items: center;
     align-items: center;
     -webkit-flex: 1 0 0;
+    -ms-flex: 1 0 0;
     flex: 1 0 0;
     padding: 10px 20px;
  }
@@ -80,6 +83,87 @@ b {
 }
 
 
+
+.container {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #fff;
+  width: 90%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+h2 {
+  margin-top: 0;
+  font-size: 1.2em;
+  color: #333;
+}
+.search-input {
+  width: 92%;
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.search-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #113b51;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+}
+.search-button:hover {
+  background-color: #45788b;
+}
+.gauge {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  margin: 0 auto 20px auto;
+}
+.arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid #000;
+  left: 50%;
+  top: 100%;
+  transform-origin: center bottom;
+}
+.checklist {
+  text-align: left;
+}
+.checklist li {
+  list-style: none;
+  margin: 10px 0;
+  padding-left: 25px;
+  position: relative;
+}
+.checklist li:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+.green:before {
+  background-color: #4caf50;
+}
+.yellow:before {
+  background-color: #ffeb3b;
+}
+.red:before {
+  background-color: #f44336;
+}
+
 .warning-ribbon {
     position: fixed; /* Stays at the top of the viewport */
     top: 0;
@@ -110,9 +194,139 @@ b {
     animation: spin 2s linear infinite;
     margin: 0 auto 10px auto; /* Center the spinner */
   }
+
+
   
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
   
+
+  .policy-container {
+    margin-bottom: 20px;
+}
+
+.policy-header {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  background-color: #f8f8f8;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.policy-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.compliance-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px; /* Space between icon and title */
+}
+.compliant {
+    background-color: green;
+}
+
+.non-compliant {
+    background-color: red;
+}
+
+.policy-content {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.policy-field {
+    margin-bottom: 10px;
+}
+
+.policy-field div {
+  margin-bottom: 10px;  /* Adds space between title and content */
+}
+
+.key-items {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.key-item {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 3px 3px;
+  margin-right: 8px; /* Adds small gap between tags */
+  margin-bottom: 5px;
+  border-radius: 15px; /* Increase to make it more rounded */
+  font-size: 12px;
+  border: 1px solid #ccc;
+}
+
+.toggle-marker {
+  font-size: 18px; /* Increase size for better visibility */
+  margin-left: 10px; /* Space between title and toggle marker */
+}
+
+.field-title {
+  font-weight: bold;  /* Ensure all field titles are bold */
+  margin-bottom: 5px; /* Add space below the title for clarity */
+}
+
+.fix-button {
+  background-color: #89c2e9; /* Light blue */
+  color: white;               /* White text */
+  border: none;               /* Remove default border */
+  padding: 8px 16px;          /* Padding to make the button look better */
+  text-align: center;         /* Center the text */
+  text-decoration: none;      /* Remove underline */
+  display: inline-block;      /* Make it inline */
+  font-size: 14px;            /* Adjust font size */
+  border-radius: 6px;         /* Small rounded corners */
+  cursor: pointer;            /* Pointer cursor on hover */
+  margin-top: 10px;           /* Add space between the button and text */
+}
+
+.fix-button:hover {
+  background-color: #afb3b6;  /* Slightly darker blue on hover */
+}
+
+.button-container {
+  display: flex;
+  gap: 10px; /* Optional: Adds space between the buttons */
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.carousel-text {
+  flex-grow: 1;
+  text-align: left;
+  padding: 0 10px;
+}
+
+.carousel-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.variation-number {
+  font-size: 12px;
+  color: gray;
+  text-align: right;
+  margin-top: 5px;
+}
