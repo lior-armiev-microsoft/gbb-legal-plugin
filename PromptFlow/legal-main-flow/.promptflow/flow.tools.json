@@ -194,6 +194,11 @@
     "search_policy.py": {
       "type": "python",
       "inputs": {
+        "query": {
+          "type": [
+            "string"
+          ]
+        },
         "embeding": {
           "type": [
             "list"
@@ -225,6 +230,11 @@
           "type": [
             "object"
           ]
+        },
+        "input4": {
+          "type": [
+            "object"
+          ]
         }
       },
       "source": "aggregation.py",
@@ -245,6 +255,50 @@
         }
       },
       "source": "summary_full_doc.py",
+      "function": "python_tool"
+    },
+    "search_doc.py": {
+      "type": "python",
+      "inputs": {
+        "query": {
+          "type": [
+            "string"
+          ]
+        },
+        "embedinginput": {
+          "type": [
+            "list"
+          ]
+        },
+        "searchconnection": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "search_doc.py",
+      "function": "search_doc_tool"
+    },
+    "ask_result_format.py": {
+      "type": "python",
+      "inputs": {
+        "query": {
+          "type": [
+            "string"
+          ]
+        },
+        "search_result_list": {
+          "type": [
+            "list"
+          ]
+        },
+        "openai": {
+          "type": [
+            "AzureOpenAIConnection"
+          ]
+        }
+      },
+      "source": "ask_result_format.py",
       "function": "python_tool"
     }
   }

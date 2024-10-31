@@ -82,7 +82,9 @@ b {
     font-weight: bold;
 }
 
-
+.flex-container {
+  display: flex;
+}
 
 .container {
   border: 2px solid #ddd;
@@ -194,9 +196,12 @@ h2 {
     animation: spin 2s linear infinite;
     margin: 0 auto 10px auto; /* Center the spinner */
   }
-
-
   
+  .loading{
+    text-align: center;
+    margin-top: 20px;
+  }
+
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -218,6 +223,25 @@ h2 {
 }
 
 .policy-title {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.doc-summary-container {
+  margin-bottom: 20px;
+}
+
+.doc-summary-header {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  background-color: #f8f8f8;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.doc-summary-title {
   font-weight: bold;
   font-size: 16px;
 }
@@ -253,22 +277,26 @@ h2 {
   margin-bottom: 10px;  /* Adds space between title and content */
 }
 
-.key-items {
-  display: flex;
-  gap: 5px;
-  margin-top: 5px;
-}
+.key-items {  
+  display: flex;  
+  flex-wrap: wrap;  
+  gap: 5px;  
+  max-width: 100%;  
+  overflow: hidden;  
+  padding: 5px 0;  
+} 
 
 .key-item {
   display: inline-block;
   background-color: #f0f0f0;
   color: #333;
-  padding: 3px 3px;
-  margin-right: 8px; /* Adds small gap between tags */
+  padding: 1px 1px;
+  margin-right: 2px; /* Adds small gap between tags */
   margin-bottom: 5px;
-  border-radius: 15px; /* Increase to make it more rounded */
-  font-size: 12px;
+  border-radius: 10px; /* Increase to make it more rounded */
+  font-size: 14px;
   border: 1px solid #ccc;
+  white-space: nowrap;
 }
 
 .toggle-marker {
@@ -329,4 +357,37 @@ h2 {
   color: gray;
   text-align: right;
   margin-top: 5px;
+}
+
+
+.answer-container, .results-container {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.answer-container h3, .results-container h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.result-item {
+  padding: 8px;
+  margin: 5px 0;
+  cursor: pointer;
+  background-color: #e8e8e8;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.result-item:hover {
+  background-color: #d0d0d0;
+}
+
+.result-description {
+  margin: 5px 0 0 0;
+  font-size: 0.9em;
+  color: #555;
 }

@@ -6,7 +6,7 @@ from promptflow import tool
 # Adding type to arguments and return value will help the system show the types properly
 # Please update the function name/signature per need
 @tool
-def my_python_tool(input1: dict, input2: dict, input3: dict) -> dict:
+def my_python_tool(input1: dict, input2: dict, input3: dict, input4: dict) -> dict:
     #check witch input is not null and return it
     if input1:
         return input1
@@ -14,5 +14,7 @@ def my_python_tool(input1: dict, input2: dict, input3: dict) -> dict:
         return input2
     elif input3:
         return input3
+    elif input4:
+        return input4
     else:
         return "Both inputs are null"

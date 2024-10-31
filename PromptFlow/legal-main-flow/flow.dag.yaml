@@ -11,7 +11,22 @@ inputs:
     is_chat_input: true
     default: "(a)\tThe Contract shall be governed by and construed in accordance
       with the laws of Singapore, without reference to its conflict of laws
-      rules. "
+      rules.    (b)\tFor Purchase Orders issued to Sellers incorporated in
+      Singapore, unless otherwise specified in the Purchase Order, the parties
+      submit to the jurisdiction of the courts of Singapore.    (c)\tFor
+      Purchase Orders issued to Sellers other than those described in Clause
+      28(b) above, unless otherwise specified in the Purchase Order, any dispute
+      arising out of or in connection with the Contract, including any question
+      regarding its existence, validity or termination, shall be referred to and
+      finally resolved by arbitration in Singapore in accordance with the
+      Arbitration Rules of the Singapore International Arbitration Centre (SIAC)
+      for the time being in force, which rules are deemed to be incorporated by
+      reference into this Clause. The arbitration proceedings shall be conducted
+      in English. The arbitration award shall be enforceable before a court of
+      competent jurisdiction.    (d)\tFor the avoidance of doubt, parties are
+      not precluded from seeking injunctive relief from a court of competent
+      jurisdiction in relation to any breach or threatened breach of the
+      Contract to avoid irreparable harm or injury.    "
   query_type:
     type: int
     default: 2
@@ -58,6 +73,7 @@ nodes:
   inputs:
     searchconnection: azuresearch
     embeding: ${text_embedding.output}
+    query: ${inputs.question}
 - name: text_embedding
   type: python
   source:
@@ -79,6 +95,7 @@ nodes:
     input1: ${selection_summary.output}
     input2: ${summary_document.output}
     input3: ${summary_full_doc.output}
+    input4: ${ask_result_format.output}
   aggregation: false
 - name: summary_full_doc
   type: python
@@ -91,3 +108,33 @@ nodes:
   activate:
     when: ${inputs.query_type}
     is: 1
+- name: query_embedding
+  type: python
+  source:
+    type: package
+    tool: promptflow.tools.embedding.embedding
+  inputs:
+    connection: lioropenaitest
+    deployment_name: ada002
+    input: ${inputs.question}
+  activate:
+    when: ${inputs.query_type}
+    is: 3
+- name: search_doc
+  type: python
+  source:
+    type: code
+    path: search_doc.py
+  inputs:
+    searchconnection: azuresearch
+    embedinginput: ${query_embedding.output}
+    query: ${inputs.question}
+- name: ask_result_format
+  type: python
+  source:
+    type: code
+    path: ask_result_format.py
+  inputs:
+    query: ${inputs.question}
+    search_result_list: ${search_doc.output}
+    openai: lioropenaitest

@@ -1,6 +1,3 @@
-<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
-<!-- This file shows how to design a first-run page that provides a welcome screen to the user about the features of the add-in. -->
-
 <!DOCTYPE html>
 <html>
 
@@ -13,32 +10,36 @@
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
     
+    <script type="module" src="Containers/aks.js"></script>  
+    <script type="module" src="Containers/summary_selected.js"></script>
+    <script type="module" src="Containers/summary_document.js"></script>
+
     <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
     <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css"/>
 
     <!-- Template styles -->
     <link href="taskpane.css" rel="stylesheet" type="text/css" />
+    
     <style>    
     </style>
 </head>
 
 <body class="ms-font-m ms-welcome ms-Fabric">
-    <!-- <header class="ms-welcome__header ms-bgColor-neutralLighter">
-        <img width="90" height="90" src="../../assets/logo-filled.png" alt="GBB" title="GBB" />
-        <h1 class="ms-font-xxl ms-fontWeight-semilight">GBB Leagal App</h1>
-    </header> -->
 
     <div class="warning-ribbon" style="display: none;">
-        <span>Indexed Document Successfully</span>
+        <span id="ribbon-text"></span>
       </div>
     
     <section id="sideload-msg" class="ms-welcome__main" style="display: none;">
-        <div class="spinner"></div><h1>Checking AI configuration, please wait...</h1>
+        <div class="spinner"></div><h1 style="text-align: center;">Checking AI configuration, please wait...</h1>
     </section>
     
     <main id="app-body" class="ms-welcome__main" style="display: none;">
-        <!-- Description -->
-        <h1 class="ms-font-xxl">GBB Leagal App</h1>
+        <!-- title with icon icon.png on the left and h1 titile on the right side -->
+        <div class="flex-container"  >
+            <div style="align-content: center;"><img src="../../assets/icon-80.ico" alt="GBB" title="GBB"/></div>
+            <div><h1 class="ms-font-xxl ms-fontWeight-semilight">Ally Legal</h1></div>
+        </div>
 
 
         <h2 class="ms-font-xl"> Discover the many ways Azure OpenAI Service can help you draft and review your contracts more efficiently.</h2>
@@ -56,11 +57,16 @@
                 <span class="ms-font-m">Expedite your contract review process by chatting with your data in real-time</span>
             </li>
         </ul>
-        <p class="ms-font-l">Select from the next <b>4</b> options.</p>
+        <p class="ms-font-l">Select from the next <b>3</b> options.</p>
+
+        <button class="ms-Button ms-Button--primary search-button" id="reset-button" style="display: none;">
+            <span class="ms-Button-label">Clear Cache</span>
+        </button>
+        <br>
 
         <!--- Create a button to index the current document -->
         <!--  I need to have a script running in the background to index the document and when it is done, I will show a message that the document is indexed and ready for search and review. -->
-        <div class="container" id="index-doc-container">
+        <div class="container" id="index-doc-container" style="display: none;">
             <h2>Index</h2>
             <p>Your document seems to be <b>not</b> Indexed, For all Ai functions to work you must press the Index button</p>
             <p>This process may take a few minutes</p>
@@ -72,6 +78,7 @@
         </div>
         <br>
 
+        
         <div id="summary-container" class="container">
             <h2>Summary</h2>
             <p>Summarize the document to get a quick overview of the key clauses and provisions</p>
@@ -84,155 +91,36 @@
         
         <br>
 
+        <!--- Ask Button -->
+        <div class="container" id="ask-container">
+            <h2>Ask</h2>
+            <p>Chat with your contract to uncover the general meaning of the various provisions</p>
+            <div id="ask-spinner" style="display: none;" class="spinner"></div>
+            <input type="text" class="search-input" id="ask-input" name="search" placeholder="Write your question">
+            <button class="ms-Button ms-Button--primary search-button" id="ask-button">
+                <span class="ms-Button-label">Ask on the contract</span>
+            </button>
+        </div>
+        <br>
+
+
+
 
         <div id="policy-container" class="container">
-            <h2>Review</h2>
+            <h2>Review & Mark-up</h2>
             <p>Make a risk assessment of key contract clauses compared to your organizational standard. </p>
             <p>This button will review the document based on organizational standard</p>
-            <p>If Text is been selected the check will be done on the selected text</p>
+            <p>and will suggest mark-up for the clause.</p>
             <div id="policy-spinner" style="display: none;" class="spinner"></div>
             <button class="ms-Button ms-Button--primary search-button" id="fetchPolicyData">
             <span class="ms-Button-label">Check Policies</span>
             </button>            
         </div>
         <br>
-
-
-        <!--- Ask Button -->
-        <div class="container" style="display: none;">
-            <h2>Ask</h2>
-            <p>Chat with your contract to uncover the general meaning of the various provisions</p>
-            <div role="button" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-                <input type="text" class="search-input" id="ask-input" name="search" placeholder="Write your question">
-            </div>
-            <form>
-                <fieldset>
-                  <legend>Search option:</legend>
-                  
-                  <label>
-                    <input type="radio" name="selection" value="web" checked>
-                    Global
-                  </label><br>
-                  
-                  <label>
-                    <input type="radio" name="selection" value="organization" >
-                    Organizational
-                  </label>
-                </fieldset>
-              </form>
-            <br>
-            <button class="ms-Button ms-Button--primary search-button" id="ask-button">
-                <span class="ms-Button-label">Ask on the contract</span>
-            </button>
-            <div id="ask-output" style="display: none;">
-                
-            </div>
-            <button class="ms-Button ms-Button--primary search-button" id="ask-clear" style="display: none;">
-                <span class="ms-Button-label">Clear</span>
-            </button>
-        </div>
-        <br>
-
-
-        <!--- Re-Mark Button -->
-        <div class="container" style="display: none;">
-            <h2>Verify</h2>
-            <p>Using semantic search you can uncover hidden instances of legal clauses in the contract to mitigate risk.</p>
-            
-            <div role="button" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-                <input type="text" class="search-input" id="search-input" name="search" placeholder="Search in your contract">
-            </div>
-            <button class="ms-Button ms-Button--primary search-button" id="search-button">
-                <span class="ms-Button-label">Search Internally</span>
-            </button>
-        </div>
-        <br>
-        <!--- Re-View Button -->
-
-        <div role="button" id="review-button" class="container" style="display: none;">
-            <h2>Review</h2>
-            <p>Make a risk assessment of key contract clauses compared to your organizational standard. </p>
-            <p>This button will review the selected text based on organizational standard</p>
-            <button class="ms-Button ms-Button--primary search-button">
-                <span class="ms-Button-label">Review Selected</span> 
-            </button>
-        </div>
-
-        
-        <div class="container" style="display: none;" id="review-container">
-            <div class="gauge">
-                <svg viewBox="0 0 100 50" width="200" height="100">
-                    <defs>
-                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="33%" style="stop-color:#4caf50;stop-opacity:1" />
-                            <stop offset="33%" style="stop-color:#ffeb3b;stop-opacity:1" />
-                            <stop offset="66%" style="stop-color:#ffeb3b;stop-opacity:1" />
-                            <stop offset="66%" style="stop-color:#f44336;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M10,50 A40,40 0 0,1 90,50" fill="none" stroke="url(#grad1)" stroke-width="10" />
-                    <line id="arrow" x1="50" y1="50" x2="50" y2="10" stroke="#000" stroke-width="2" transform="rotate(0, 50, 50)" />
-                </svg>
-            </div>
-            <ul class="checklist">
-                <li class="green" id="item1"></li>
-                <li class="yellow" id="item2"></li>
-                <li class="red" id="item3"></li>
-                <li class="green" id="item4"></li>
-            </ul>
-        <!-- craete a close button -->
-         <button class="ms-Button ms-Button--primary search-button" id="review-close">
-                <span class="ms-Button-label">Close</span> 
-            </button>
-        </div>
-
-        <br>
-        <!--- Re-Write Button -->
-        <div role="button" id="rewrite-button" class="container">
-            <h2>Mark-up</h2>
-            <!-- meke this <span class="ms-Button-label">Run</span> a nice light gray button -->
-            <p>Implement your organizational standard in the contract negotiation process by introducing minimal surgical redlines.</p>
-            <p>This button will mark up the selected clause based on organizational standard</p>
-            <button class="ms-Button ms-Button--primary search-button">
-                <span class="ms-Button-label">Rewrite Selected</span> 
-            </button>
-        </div>
-        <br>
-        <p><label id="item-subject"></label></p>
-
     </main>
 </body>
 
 </html>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     var ButtonElements = document.querySelectorAll(".ms-Button");
-  </script>
-  <script type="text/javascript">
-    document.getElementById("ask-button").addEventListener("click", function() {
-        var askOutputDiv = document.getElementById("ask-output");
-        var askClearButton = document.getElementById("ask-clear");
-        askOutputDiv.style.display = "block";
-        askClearButton.style.display = "block";
-        askOutputDiv.style.border = "1px solid #ccc";
-        askOutputDiv.style.padding = "10px";
-        askOutputDiv.style.marginTop = "10px";
-        askOutputDiv.style.backgroundColor = "#f9f9f9";
-    });
-    document.getElementById("ask-clear").addEventListener("click", function() {
-        var askOutputDiv = document.getElementById("ask-output");
-        var askClearButton = document.getElementById("ask-clear");
-        askOutputDiv.style.display = "none";
-        askClearButton.style.display = "none";
-    });
-
-    document.getElementById("review-button").addEventListener("click", function() {
-        var reviewcontainerDiv = document.getElementById("review-container");
-        reviewcontainerDiv.style.display = "block";
-    });
-
-    document.getElementById("review-close").addEventListener("click", function() {
-        var reviewcontainerDiv = document.getElementById("review-container");
-        reviewcontainerDiv.style.display = "none";
-    });
-
-</script>
+  </script> -->
