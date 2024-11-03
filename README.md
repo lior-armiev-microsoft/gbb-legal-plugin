@@ -15,6 +15,8 @@ The Office 365 Legal Plugin is a powerful tool designed to enhance the efficienc
   
 The plugin's architecture consists of a front-end UI, developed in JavaScript, integrated directly into Microsoft Word as an Office 365 plugin. The back end employs Azure PromptFlow, which acts as an orchestration engine triggered by plugin commands. PromptFlow operates in AKS with Docker or in Azure AI Studio, utilizing two Azure AI Search indexes—one for document data and another for company policy. The runtime for PromptFlow is Python, enabling Azure OpenAI LLM calls for summarization and compliance checks. The solution's configuration, including API keys, is stored within the plugin and can be modified via the configuration tab.  
   
+![High-Level Design](./files/hld.png)
+
 ## Prerequisites  
   
 To install and run the plugin locally, ensure you have the following:  
