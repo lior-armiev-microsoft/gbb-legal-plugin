@@ -1,10 +1,10 @@
 {
-    "azure-openai-key": "",
+    "azure-openai-key": "3df54c9476a141f1ba4ed45105504754",
     "azure-openai-endpoint": "https://gbbailiortestopenai1.openai.azure.com/",
     "azure-openai-model": "gpt4o",
     "azure-openai-api-version": "2024-02-15-preview",
     "azure-openai-model-embedding": "ada002",
-    "azure-search-key": "",
+    "azure-search-key": "gMcbFgmo6wx64veRCj16nHkrfyLgbLgKL1Qiq0h2h1AzSeCBWvP0",
     "azure-search-endpoint": "https://gbbsearchtest1.search.windows.net",
     "azure-search-index": "legal-instructions",
     "azure-search-api-version": "2023-11-01",

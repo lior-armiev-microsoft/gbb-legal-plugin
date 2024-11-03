@@ -1,0 +1,9 @@
+$schema: 
+  https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
+type: custom
+name: azuresearch
+configs:
+  endpoint: https://gbbsearchtest1.search.windows.net
+secrets:
+  key: ${env:AZURESEARCH_KEY}
+module: promptflow.connections
