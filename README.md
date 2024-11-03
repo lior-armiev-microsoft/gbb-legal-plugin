@@ -3,7 +3,13 @@
 ![Ally](./files/ally-small.png)
 ## Overview  
   
-The Office 365 Legal Plugin is a powerful tool designed to enhance the efficiency and productivity of legal professionals when reviewing contracts. Similar to solutions like Harvey and Spellbook, this plugin leverages advanced AI capabilities to help lawyers summarize, review, check for policy and compliance, and make corrections and redlining in a fast and efficient manner. Built with Microsoft's best-of-breed technologies, it offers an end-to-end solution using Azure infrastructure, Azure AI, and Office 365, with the flexibility of an open-source code base for customization.  
+The Office 365 Legal Plugin is an innovative solution meticulously crafted to transform the landscape of contract management for legal professionals. This sophisticated tool harnesses the power of advanced artificial intelligence to streamline the intricate processes of document summarization, comprehensive review, policy compliance verification, and the application of corrections and redlining. By integrating seamlessly with Microsoft Word within the Office 365 suite, the plugin provides a native and intuitive user experience.
+
+At the heart of this plugin is the robust infrastructure of Azure, coupled with Azure AI’s cutting-edge capabilities, delivering an unparalleled end-to-end contract management solution. This integration not only enhances the speed and accuracy of contract processing but also ensures that legal professionals can focus on more strategic aspects of their work.
+
+The Office 365 Legal Plugin is designed with flexibility and scalability in mind. Its open-source code base allows organizations to tailor the solution to their unique requirements, offering a customizable platform that can evolve alongside changing business needs. Whether deployed in a local environment or within a larger cloud-based infrastructure using Docker and Azure Kubernetes Service (AKS), this plugin adapts to diverse IT architectures, ensuring optimal performance and reliability.
+
+By leveraging this plugin, legal teams can significantly reduce the time spent on manual tasks, thereby increasing overall productivity and enabling a sharper focus on delivering value to clients. Embrace the future of legal technology with a solution that combines Microsoft’s best-of-breed offerings to redefine efficiency and efficacy in legal contract management.
   
 ## Key Features  
   
