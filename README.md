@@ -1,5 +1,6 @@
+
 # Office 365 Legal Plugin  
-  
+![Ally](./files/ally-small.png)
 ## Overview  
   
 The Office 365 Legal Plugin is a powerful tool designed to enhance the efficiency and productivity of legal professionals when reviewing contracts. Similar to solutions like Harvey and Spellbook, this plugin leverages advanced AI capabilities to help lawyers summarize, review, check for policy and compliance, and make corrections and redlining in a fast and efficient manner. Built with Microsoft's best-of-breed technologies, it offers an end-to-end solution using Azure infrastructure, Azure AI, and Office 365, with the flexibility of an open-source code base for customization.  
