@@ -20,28 +20,8 @@ def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnect
     client = AzureOpenAI(  
         azure_endpoint=openai.api_base,  
         api_key=openai.api_key,  
-        api_version="2024-08-01-preview"
+        api_version=openai.api_version
     )
-            # summarize the document provided by the user, the summary will be only on the policy items provided. Return the analysis in the following JSON format, the format is as follows: 
-#     prompt = '''
-#     This is the list of steps to follow answer a user question:
-#     1. you need to understand the user's question and provide a summary of the question.
-#     2. you will have a json input from a query nade in a previews step, it will have list of answers most relevant to the user's question.
-#     3. you need to take the list and the user question and provide the best answer to the user.
-#     4. the answer is probably need to be based on the first item in the list, but if another item fits better, you can use it
-#     5. the answer is based only from information in the list, do not use any other information.
-#     6. answer in the same language as the user question. also translete the search result to the same language as the user question.
-#     7. Return the output in the following JSON format, the format is as follows: 
-#     {"answer": "The answer to the user's question",
-#     "answer_source": "the exact text of the paragraph from the list",
-#     "search_result": [
-#         {
-#         "title": "Title from serach result",
-#         "summary": "summary from search result",
-#         "keyphreses": ["keyphrase1", "keyphrase2"]
-#         }]
-#     }
-# '''
 
     prompt = '''
     Task: Answer the user's question based on relevant paragraphs from the document. If no relevant information is found, provide a general answer with a disclaimer.

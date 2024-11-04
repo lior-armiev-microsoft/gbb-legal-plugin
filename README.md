@@ -46,6 +46,10 @@ To install and run the plugin locally, ensure you have the following:
 3. Navigate to the solution directory.  
 4. Run `npm install` to install dependencies.  
 5. Start the plugin with `npm start`.  
+6. Go to the PrompFlow  folder
+7. Run `pf flow serve --source . --port 8083 --host localhost`
+8. This will load a local web on port `8083` and can be used by the Plugin
+
   
 **Office 365 Deployment:**  
   
@@ -57,11 +61,25 @@ To install and run the plugin locally, ensure you have the following:
   
 ## User Interaction  
   
-- (A video will be provided to demonstrate user interaction and main workflows.)  
+- (A video will be provided to demonstrate user interaction and main workflows.)
   
 ## Deployment to AKS or Docker  
   
 The solution includes a Docker folder within the PromptFlow directory for deployment. After deployment in the PromptFlow connector, update the endpoint information. Ensure connection parameters for OpenAI and Azure Search are set correctly.  
+
+Working with the Docker file steps:
+1. Go to docker folder in the project
+2. Run `docker build -t {Give you name for the container} .`
+3. Run the container with port `8083` and the next paramiters:
+    - AZURESEARCH_KEY
+    - AZURESEARCH_ENDPOINT
+    - AZUREOPENAI_API_KEY
+    - AZUREOPENAI_API_ENDPOINT
+    - AZUREOPENAI_API_VERSION `2024-02-15-preview`
+4. Run the Word Plugin 
+5. Navigate to the solution directory.  
+6. Run `npm install` to install dependencies.  
+7. Start the plugin with `npm start`. 
   
 ## Importing into Azure AI Studio  
   
