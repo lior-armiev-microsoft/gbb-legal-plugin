@@ -64,6 +64,11 @@
         "search_policy.py": {
             "type": "python",
             "inputs": {
+                "query": {
+                    "type": [
+                        "string"
+                    ]
+                },
                 "embeding": {
                     "type": [
                         "list"
@@ -77,6 +82,94 @@
             },
             "source": "search_policy.py",
             "function": "list_policy_tool"
+        },
+        "aggregation.py": {
+            "type": "python",
+            "inputs": {
+                "input1": {
+                    "type": [
+                        "object"
+                    ]
+                },
+                "input2": {
+                    "type": [
+                        "object"
+                    ]
+                },
+                "input3": {
+                    "type": [
+                        "object"
+                    ]
+                },
+                "input4": {
+                    "type": [
+                        "object"
+                    ]
+                }
+            },
+            "source": "aggregation.py",
+            "function": "my_python_tool"
+        },
+        "summary_full_doc.py": {
+            "type": "python",
+            "inputs": {
+                "input_text": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "openai": {
+                    "type": [
+                        "AzureOpenAIConnection"
+                    ]
+                }
+            },
+            "source": "summary_full_doc.py",
+            "function": "python_tool"
+        },
+        "search_doc.py": {
+            "type": "python",
+            "inputs": {
+                "query": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "embedinginput": {
+                    "type": [
+                        "list"
+                    ]
+                },
+                "searchconnection": {
+                    "type": [
+                        "CustomConnection"
+                    ]
+                }
+            },
+            "source": "search_doc.py",
+            "function": "search_doc_tool"
+        },
+        "ask_result_format.py": {
+            "type": "python",
+            "inputs": {
+                "query": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "search_result_list": {
+                    "type": [
+                        "list"
+                    ]
+                },
+                "openai": {
+                    "type": [
+                        "AzureOpenAIConnection"
+                    ]
+                }
+            },
+            "source": "ask_result_format.py",
+            "function": "python_tool"
         }
     },
     "package": {

@@ -5,7 +5,7 @@ from azure.search.documents import SearchClient
 from azure.search.documents.models import VectorizedQuery
 
 @tool
-def list_policy_tool(embeding:list, searchconnection: CustomConnection) -> object:
+def list_policy_tool(query: str, embeding:list, searchconnection: CustomConnection) -> object:
     search_endpoint = searchconnection.endpoint
     search_index = "legal-instructions"
     search_key = searchconnection.key
@@ -15,7 +15,7 @@ def list_policy_tool(embeding:list, searchconnection: CustomConnection) -> objec
 
     search_client = SearchClient(search_endpoint, search_index, AzureKeyCredential(search_key))
     results = search_client.search(
-        search_text="*",  # Use '*' to match all documents
+        search_text=query,  # Use '*' to match all documents
         vector_queries=[vector_query],
         select="title,instruction"     # Specify the fields to include in the results
     )

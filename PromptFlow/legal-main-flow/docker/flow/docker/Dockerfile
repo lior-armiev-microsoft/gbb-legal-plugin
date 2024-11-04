@@ -13,8 +13,12 @@ RUN conda create -n promptflow-serve python=3.9.16 pip=23.0.1 -q -y && \
     conda run -n promptflow-serve \
     pip install -r /flow/requirements.txt && \
     conda run -n promptflow-serve pip install promptflow && \
+    conda run -n promptflow-serve pip install promptflow-tools && \
     conda run -n promptflow-serve pip install keyrings.alt && \
     conda run -n promptflow-serve pip install gunicorn==20.1.0 && \
+    conda run -n promptflow-serve pip install promptflow-vectordb && \
+    conda run -n promptflow-serve pip install azure-search-documents && \
+    conda run -n promptflow-serve pip install openai && \
     conda run -n promptflow-serve pip install 'uvicorn>=0.27.0,<1.0.0' && \
     conda run -n promptflow-serve pip cache purge && \
     conda clean -a -y
