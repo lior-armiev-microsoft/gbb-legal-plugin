@@ -31,7 +31,7 @@ def python_tool(input_text: str, policy_list: list, openai: AzureOpenAIConnectio
     2. The summary will be only on the policy items provided in the list and will only summarize text with to compare with the policy items provided in the list
     3. compare field will be the summary of the relevant policy item and the text provided for the comparison and emphasis on the compare
     4. original_text field will be the original text from the document with no changes or eddits
-    5. all of the text will be in the local language of the document
+    5. all of the text will be in English
     6. Return the output in the following JSON format, the format is as follows: {"PolicyItems": [
     {"title": "Policy Title", 
      "summary": "Short Policy Summary based on Documnet only", 

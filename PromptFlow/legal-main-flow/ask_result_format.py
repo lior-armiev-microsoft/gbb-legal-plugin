@@ -42,7 +42,7 @@ def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnect
 #         }]
 #     }
 # '''
-
+#Provide the answer and translate the search results into the same language as the user's question.
     prompt = '''
     Task: Answer the user's question based on relevant paragraphs from the document. If no relevant information is found, provide a general answer with a disclaimer.
 
@@ -58,7 +58,7 @@ Preferably base your answer on the first item in the list unless another item is
 Information Source:
 Ensure that the answer is solely based on the information provided in the list. Do not introduce any external information.
 Language Consistency:
-Provide the answer and translate the search results into the same language as the user's question.
+English
 Disclaimer:
 If the query results are empty or if any part of your answer is not directly supported by the provided data, append a disclaimer at the end: "The information provided is not from the document."
 JSON Output Format:

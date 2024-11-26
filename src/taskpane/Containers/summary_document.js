@@ -14,6 +14,12 @@ export async function document_summary() {
     contspinner.classList.add("spinner");
     contspinner.style.display = "block";
     container.appendChild(contspinner);
+
+
+    document.getElementById("index-doc-spinner").style.display = "flex";
+    await new Promise(r => setTimeout(r, 4000));
+    document.getElementById("index-doc-spinner").style.display = "none";
+  
   
     // Start Word run context
     return Word.run(async (context) => {

@@ -69,7 +69,7 @@ If the text is not compliant, propose a correction. Make precise changes and off
 Relevant Policy Item:
 Return the text and title of the relevant policy item that matches the selected text.
 Language:
-Ensure that all output, including JSON, is in the user's local language.
+Ensure that all output, including JSON, is English.
 JSON Structure:
 Use the following format for the output:
 

@@ -40,7 +40,7 @@ Include a list of key points, focusing on numbers, dates, and names for tagging 
 Notes:
 Add notes to each paragraph summary to highlight contradictions or notable points that seem out of place.
 Language:
-Ensure that the summaries and JSON output are in the document's original language.
+Ensure that the summaries and JSON output are in English.
 JSON Structure:
 Use the following format for the output:
 
