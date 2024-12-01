@@ -1,7 +1,0 @@
-2024-09-29 17:57:37 +0300   30584 execution.flow     INFO     Start executing nodes in thread pool mode.
-2024-09-29 17:57:37 +0300   30584 execution.flow     INFO     Start to run 2 nodes with concurrency level 16.
-2024-09-29 17:57:37 +0300   30584 execution.flow     INFO     Executing node python_node_fqdn. node run id: 7475f4a2-912e-447f-80ee-9b171bf74a2e_python_node_fqdn_0
-2024-09-29 17:57:37 +0300   30584 execution.flow     INFO     Node python_node_fqdn completes.
-2024-09-29 17:57:37 +0300   30584 execution.flow     INFO     The node 'Embedding_2ev3' will be executed because the activate condition is met, i.e. '${python_node_fqdn.output.function}' is equal to 'general-ask'.
-2024-09-29 17:57:37 +0300   30584 execution.flow     INFO     Executing node Embedding_2ev3. node run id: 7475f4a2-912e-447f-80ee-9b171bf74a2e_Embedding_2ev3_0
-2024-09-29 17:57:38 +0300   30584 execution.flow     INFO     Node Embedding_2ev3 completes.

@@ -1,0 +1,233 @@
+{
+  "code": {
+    "list_policys.py": {
+      "type": "python",
+      "inputs": {
+        "input": {
+          "type": [
+            "string"
+          ]
+        },
+        "searchconnection": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "list_policys.py",
+      "function": "list_policy_tool"
+    },
+    "summary_document.py": {
+      "type": "python",
+      "inputs": {
+        "input_text": {
+          "type": [
+            "string"
+          ]
+        },
+        "policy_list": {
+          "type": [
+            "list"
+          ]
+        },
+        "openai": {
+          "type": [
+            "AzureOpenAIConnection"
+          ]
+        }
+      },
+      "source": "summary_document.py",
+      "function": "python_tool"
+    },
+    "documen_summary.py": {
+      "type": "python",
+      "inputs": {
+        "input_text": {
+          "type": [
+            "string"
+          ]
+        },
+        "policy_list": {
+          "type": [
+            "list"
+          ]
+        },
+        "openai": {
+          "type": [
+            "AzureOpenAIConnection"
+          ]
+        }
+      },
+      "source": "documen_summary.py",
+      "function": "python_tool"
+    },
+    "search_policy.py": {
+      "type": "python",
+      "inputs": {
+        "query": {
+          "type": [
+            "string"
+          ]
+        },
+        "embeding": {
+          "type": [
+            "list"
+          ]
+        },
+        "searchconnection": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "search_policy.py",
+      "function": "list_policy_tool"
+    },
+    "aggregation.py": {
+      "type": "python",
+      "inputs": {
+        "input1": {
+          "type": [
+            "object"
+          ]
+        },
+        "input2": {
+          "type": [
+            "object"
+          ]
+        },
+        "input3": {
+          "type": [
+            "object"
+          ]
+        },
+        "input4": {
+          "type": [
+            "object"
+          ]
+        }
+      },
+      "source": "aggregation.py",
+      "function": "my_python_tool"
+    },
+    "summary_full_doc.py": {
+      "type": "python",
+      "inputs": {
+        "input_text": {
+          "type": [
+            "string"
+          ]
+        },
+        "openai": {
+          "type": [
+            "AzureOpenAIConnection"
+          ]
+        }
+      },
+      "source": "summary_full_doc.py",
+      "function": "python_tool"
+    },
+    "search_doc.py": {
+      "type": "python",
+      "inputs": {
+        "query": {
+          "type": [
+            "string"
+          ]
+        },
+        "embedinginput": {
+          "type": [
+            "list"
+          ]
+        },
+        "searchconnection": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "search_doc.py",
+      "function": "search_doc_tool"
+    },
+    "ask_result_format.py": {
+      "type": "python",
+      "inputs": {
+        "query": {
+          "type": [
+            "string"
+          ]
+        },
+        "search_result_list": {
+          "type": [
+            "list"
+          ]
+        },
+        "openai": {
+          "type": [
+            "AzureOpenAIConnection"
+          ]
+        }
+      },
+      "source": "ask_result_format.py",
+      "function": "python_tool"
+    }
+  },
+  "package": {
+    "promptflow.tools.embedding.embedding": {
+      "name": "Embedding",
+      "description": "Use Open AI's embedding model to create an embedding vector representing the input text.",
+      "type": "python",
+      "module": "promptflow.tools.embedding",
+      "function": "embedding",
+      "inputs": {
+        "connection": {
+          "type": [
+            "AzureOpenAIConnection",
+            "OpenAIConnection"
+          ]
+        },
+        "deployment_name": {
+          "type": [
+            "string"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "AzureOpenAIConnection"
+          ],
+          "capabilities": {
+            "completion": false,
+            "chat_completion": false,
+            "embeddings": true
+          },
+          "model_list": [
+            "text-embedding-ada-002",
+            "text-search-ada-doc-001",
+            "text-search-ada-query-001"
+          ]
+        },
+        "model": {
+          "type": [
+            "string"
+          ],
+          "enabled_by": "connection",
+          "enabled_by_type": [
+            "OpenAIConnection"
+          ],
+          "enum": [
+            "text-embedding-ada-002",
+            "text-search-ada-doc-001",
+            "text-search-ada-query-001"
+          ],
+          "allow_manual_entry": true
+        },
+        "input": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "package": "promptflow-tools",
+      "package_version": "1.3.0"
+    }
+  }
+}
