@@ -1,0 +1,71 @@
+{
+  "package": {},
+  "code": {
+    "check_ifindexed.py": {
+      "type": "python",
+      "inputs": {
+        "filename": {
+          "type": [
+            "string"
+          ]
+        },
+        "searchconnection": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "check_ifindexed.py",
+      "function": "list_policy_tool"
+    },
+    "chunk_data.py": {
+      "type": "python",
+      "inputs": {
+        "body": {
+          "type": [
+            "string"
+          ]
+        },
+        "filename": {
+          "type": [
+            "string"
+          ]
+        },
+        "openai": {
+          "type": [
+            "AzureOpenAIConnection"
+          ]
+        }
+      },
+      "source": "chunk_data.py",
+      "function": "python_tool"
+    },
+    "add_2_index.py": {
+      "type": "python",
+      "inputs": {
+        "filename": {
+          "type": [
+            "string"
+          ]
+        },
+        "input": {
+          "type": [
+            "list"
+          ]
+        },
+        "searchconnection": {
+          "type": [
+            "CustomConnection"
+          ]
+        },
+        "openai": {
+          "type": [
+            "AzureOpenAIConnection"
+          ]
+        }
+      },
+      "source": "add_2_index.py",
+      "function": "my_python_tool"
+    }
+  }
+}

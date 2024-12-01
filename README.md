@@ -92,14 +92,37 @@ To install and run the plugin locally, ensure you have the following:
 10. /cofig/cofig.json file need to hold the endpoint of the PromptFlow endpoint under the `prompt-flow-endpoint`
     for exmaple `"prompt-flow-endpoint" : "http://localhost:8083/score"` for local run of PF
 
-  
+
 **Office 365 Deployment:**  
   
 - (Instructions TBD)  
   
 ## Azure Services Configuration  
   
-- (Configurations TBD)  
+### Azure Search
+- for the solution to work where will need to be Azure Search 2 Indexes:
+    - `legal-instructions`
+        This Index is holding add customer Policy Chunks with the next table fields:
+
+        | Field Name | Type | 
+        | ---------- | ---- | 
+        | id | String | 
+        | title | String |
+        | instruction | String | 
+        | embeding | SingleCollection |
+    - `legal-documents`
+        This Index is holding all the chunks of the Documents provided for the plugin review:
+        | Field Name | Type | 
+        | ---------- | ---- | 
+        | id | String |
+        | title | String |
+        | paragraph | String |
+        | keyphrases | StringCollection |
+        | summary | String | 
+        | embedding | SingleCollection | 
+        | filename | String | 
+        | department | String |
+        | data | DateTimeOffset | 
   
 ## User Interaction  
   
@@ -125,7 +148,7 @@ Working with the Docker file steps:
   
 ## Importing into Azure AI Studio  
   
-Import the PF Yaml file from the PromptFlow folder and configure the necessary connections.  
+Import the PF Yaml file from the PromptFlow folder and configure the necessary connections.
   
 ## Intellectual Property and Licensing  
   
