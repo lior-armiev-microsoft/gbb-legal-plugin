@@ -1,7 +1,8 @@
 // ask function
 export async function ask() {
     const container = document.getElementById("ask-container");
-    
+    const pfendpoint = localStorage.getItem('pfendpoint')
+
     try {
       var query = document.getElementById("ask-input").value;
       console.log("Query: ", query);
@@ -25,7 +26,7 @@ export async function ask() {
         console.log("Query: ", query);
   
         // Make the API call to get the data
-        const response = await fetch("http://localhost:8083/score", {
+        const response = await fetch(pfendpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

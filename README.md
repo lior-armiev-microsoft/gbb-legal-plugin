@@ -36,7 +36,10 @@ To install and run the plugin locally, ensure you have the following:
 - Azure OpenAI with GPT-4o model and Ada-002 for embedding  
 - Azure AI Search (Basic tier)  
 - Azure AI Studio for PromptFlow or AKS for Docker usage  
-  
+
+> [!NOTE]  
+> Use Azure OpenAi GPT4o with the `2024-08-06` model version
+
 ## Installation  
   
 **Local Installation:**  
@@ -47,8 +50,47 @@ To install and run the plugin locally, ensure you have the following:
 4. Run `npm install` to install dependencies.  
 5. Start the plugin with `npm start`.  
 6. Go to the PrompFlow  folder
-7. Run `pf flow serve --source . --port 8083 --host localhost`
-8. This will load a local web on port `8083` and can be used by the Plugin
+7. If not using Docker with PromptFlow you will need to create 2 connectors
+- Name: azuresearch
+
+    This is a Custom connector not the PromptFlow "Azure AI Search" connector
+    this is the configuration file for the connector for example:
+    ```
+    $schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
+    type: custom
+    name: azuresearch
+    configs:
+    endpoint: ${env:AZURESEARCH_ENDPOINT}
+    secrets:
+    key: ${env:AZURESEARCH_KEY}
+    module: promptflow.connections
+    ```
+
+    >[!NOTE]
+    >the only 2 paramiters needed are `endpoint` and `key`
+
+
+- Name: azureopenai
+
+    This is an AzureOpenAI Connector with the next schema:
+    ```
+    $schema: https://azuremlschemas.azureedge.net/promptflow/latest/AzureOpenAIConnection.schema.json
+    type: azure_open_ai
+    name: azureopenai
+    module: promptflow.connections
+    api_base: ${env:AZUREOPENAI_API_ENDPOINT}
+    api_key: ${env:AZUREOPENAI_API_KEY}
+    api_type: azure
+    api_version: ${env:AZUREOPENAI_API_VERSION}
+    auth_mode: key
+    ```
+
+    using PromptFlow Plugin for VSCode is recomanded.
+
+8. Run `pf flow serve --source . --port 8083 --host localhost`
+9. This will load a local web on port `8083` and can be used by the Plugin
+10. /cofig/cofig.json file need to hold the endpoint of the PromptFlow endpoint under the `prompt-flow-endpoint`
+    for exmaple `"prompt-flow-endpoint" : "http://localhost:8083/score"` for local run of PF
 
   
 **Office 365 Deployment:**  

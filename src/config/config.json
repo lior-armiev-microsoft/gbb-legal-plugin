@@ -2,14 +2,11 @@
     "azure-openai-key": "3df54c9476a141f1ba4ed45105504754",
     "azure-openai-endpoint": "https://gbbailiortestopenai1.openai.azure.com/",
     "azure-openai-model": "gpt4o",
-    "azure-openai-api-version": "2024-02-15-preview",
+    "azure-openai-api-version": "2024-08-06",
     "azure-openai-model-embedding": "ada002",
     "azure-search-key": "gMcbFgmo6wx64veRCj16nHkrfyLgbLgKL1Qiq0h2h1AzSeCBWvP0",
     "azure-search-endpoint": "https://gbbsearchtest1.search.windows.net",
     "azure-search-index": "legal-instructions",
     "azure-search-api-version": "2023-11-01",
-    "azure-prompt-ask" : "You are a Law/Contract AI assistant that helps people find information. \nAnswer to the question provided by the user based on the query field, \nreferance to user selection if provided, \nand based on company knowledge provided. \ndo not create any new information.\nthe answer will be a Sylized for a html, please write the answer to fit this nerrow space and user Bold text and Bulets when needed. do not use ** use html bulets. Answer ONLY HTML format content\nThe Result needs to be in HTML style under a DIV tag without the Div tag.\n\n",
-    "azure-prompt-ask-max-tokens" : 300,
-    "azure-prompt-complinace" : "You are a Law/Contract AI assistant that helps people find information.",
-    "azure-prompt-complinace-max-tokens" : 300
+    "prompt-flow-endpoint" : "http://localhost:8083/score"
 }

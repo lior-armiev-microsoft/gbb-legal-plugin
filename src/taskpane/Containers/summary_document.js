@@ -2,7 +2,8 @@ export async function document_summary() {
     // Clear the container content before adding new results
     const container = document.getElementById("summary-container");
     const container_bk = container.innerHTML;
-  
+    const pfendpoint = localStorage.getItem('pfendpoint')
+      
     console.log("Container html: ", container_bk);
   
     if (container) {
@@ -32,7 +33,7 @@ export async function document_summary() {
         await context.sync();
         console.log(document_text.text);
               // Make the API call to get the data  ---------- Remember to remove this line ---------------
-        const response = await fetch("http://localhost:8083/score", {
+        const response = await fetch(pfendpoint, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

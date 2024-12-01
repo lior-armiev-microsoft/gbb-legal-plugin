@@ -1,6 +1,7 @@
 export async function summary() {
     // Clear the container content before adding new results
     const container = document.getElementById("policy-container");
+    const pfendpoint = localStorage.getItem('pfendpoint')
     if (container) {
       container.innerHTML = "";  // Clear existing content
     }
@@ -33,7 +34,7 @@ export async function summary() {
         
         
         // Make the API call to get the data
-        const response = await fetch("http://localhost:8083/score", {
+        const response = await fetch(pfendpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

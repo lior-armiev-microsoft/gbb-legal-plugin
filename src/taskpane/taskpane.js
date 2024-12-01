@@ -11,15 +11,7 @@ fetch("assets/config.json")
     localStorage.setItem('azureOpenAIKey', config['azure-openai-key']);
     localStorage.setItem('azureOpenAIModelName', config['azure-openai-model']);
     localStorage.setItem('azureOpenAIModelVersion', config['azure-openai-api-version']);
-    localStorage.setItem('azureOpenAIEmbeddingModelName', config['azure-openai-model-embedding']);
-    localStorage.setItem('azureSearchEndpoint', config['azure-search-endpoint']);
-    localStorage.setItem('azureSearchKey', config['azure-seasrch-key']);
-    localStorage.setItem('azureSearchIndexName', config['azure-search-index']);
-    localStorage.setItem('azurePromptAsk', config['azure-prompt-ask']);
-    localStorage.setItem('azurePromptComplince', config['azure-prompt-complinace']);
-    localStorage.setItem('azureSearchAPIVersion', config['azure-search-api-version']);
-    localStorage.setItem('azureOpenAIAskMaxTokens', config['azure-openai-ask-max-tokens']);
-    localStorage.setItem('azureOpenAIComplinaceMaxTokens', config['azure-openai-complinace-max-tokens']);
+    localStorage.setItem('pfendpoint', config['prompt-flow-endpoint']);
    })
   .catch((e) => console.error(e));
 
