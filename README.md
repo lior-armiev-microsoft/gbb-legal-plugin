@@ -1,6 +1,6 @@
 
 # Office 365 Legal Plugin  
-![Ally](./files/ally-small.png)
+
 ## Overview  
   
 The Office 365 Legal Plugin is an innovative solution meticulously crafted to transform the landscape of contract management for legal professionals. This sophisticated tool harnesses the power of advanced artificial intelligence to streamline the intricate processes of document summarization, comprehensive review, policy compliance verification, and the application of corrections and redlining. By integrating seamlessly with Microsoft Word within the Office 365 suite, the plugin provides a native and intuitive user experience.
@@ -66,8 +66,8 @@ To install and run the plugin locally, ensure you have the following:
     module: promptflow.connections
     ```
 
-    >[!NOTE]
-    >the only 2 paramiters needed are `endpoint` and `key`
+>[!NOTE]
+>the only 2 paramiters needed are `endpoint` and `key`
 
 
 - Name: azureopenai
@@ -117,7 +117,7 @@ Working with the Docker file steps:
     - AZURESEARCH_ENDPOINT
     - AZUREOPENAI_API_KEY
     - AZUREOPENAI_API_ENDPOINT
-    - AZUREOPENAI_API_VERSION `2024-02-15-preview`
+    - AZUREOPENAI_API_VERSION `2024-08-06`
 4. Run the Word Plugin 
 5. Navigate to the solution directory.  
 6. Run `npm install` to install dependencies.  
