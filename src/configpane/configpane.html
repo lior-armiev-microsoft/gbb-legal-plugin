@@ -28,8 +28,11 @@
         <span>Configuration Saved Successfully</span>
       </div>
 
-    <header class="ms-welcome__header ms-bgColor-neutralLighter">
-        <p class="ms-font-xxl ms-fontWeight-semilight">GBB Lawyer App</p>
+    <!-- <header class="ms-welcome__header ms-bgColor-neutralLighter">
+        <p class="ms-font-xxl ms-fontWeight-semilight">Ally Configuration</p>
+    </header> -->
+    <header>
+        <h2 style="text-align: center; padding: 1pc">Configuration</h2>
     </header>
     
     <section id="sideload-msg" class="ms-welcome__main" style="display: none;">
@@ -39,7 +42,16 @@
     <main id="app-body" class="ms-welcome__main" style="display: none;">
 
         
-        <div class="container" id="config-container">
+        <div id="policy-container" class="container">
+            <h3>Company Policy</h3>
+            <p>List company policies based on user permissions</p>
+            <button class="ms-Button ms-Button--primary config-button" id="list-policy-button"><span class="ms-Button-label">List</span></button>
+
+
+        </div>
+
+
+        <div class="container" id="config-container" style="display: none;">
             <h3>Configuration</h3>
             <p>Configure your Azure OpenAI and Azure Search</p>                   
 
