@@ -8,5 +8,6 @@
     "azure-search-endpoint": "https://gbbsearchtest1.search.windows.net",
     "azure-search-index": "legal-instructions",
     "azure-search-api-version": "2023-11-01",
-    "prompt-flow-endpoint" : "http://localhost:8083/score"
+    "prompt-flow-endpoint" : "http://localhost:8083/score",
+    "config-prompt-flow-endpoint" : "http://localhost:8082/config"
 }

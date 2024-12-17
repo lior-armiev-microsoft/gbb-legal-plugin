@@ -165,6 +165,8 @@ async function getOpenAIResponseDemo(prompt,text,max_tokens)
 {
   // waint 2 seconds
   await new Promise(r => setTimeout(r, 100));
-  return "Hello World";
+  //get Office.ActiveView
+
+  return "hi"
 }
 

@@ -22,7 +22,7 @@ By leveraging this plugin, legal teams can significantly reduce the time spent o
   
 The plugin's architecture consists of a front-end UI, developed in JavaScript, integrated directly into Microsoft Word as an Office 365 plugin. The back end employs Azure PromptFlow, which acts as an orchestration engine triggered by plugin commands. PromptFlow operates in AKS with Docker or in Azure AI Studio, utilizing two Azure AI Search indexes—one for document data and another for company policy. The runtime for PromptFlow is Python, enabling Azure OpenAI LLM calls for summarization and compliance checks. The solution's configuration, including API keys, is stored within the plugin and can be modified via the configuration tab.  
   
-![High-Level Design](./files/hld.png)
+![High-Level Design](./files/ally-hld.png)
 
 ## Prerequisites  
   
@@ -92,14 +92,37 @@ To install and run the plugin locally, ensure you have the following:
 10. /cofig/cofig.json file need to hold the endpoint of the PromptFlow endpoint under the `prompt-flow-endpoint`
     for exmaple `"prompt-flow-endpoint" : "http://localhost:8083/score"` for local run of PF
 
-  
+
 **Office 365 Deployment:**  
   
 - (Instructions TBD)  
   
 ## Azure Services Configuration  
   
-- (Configurations TBD)  
+### Azure Search
+- for the solution to work where will need to be Azure Search 2 Indexes:
+    - `legal-instructions`
+        This Index is holding add customer Policy Chunks with the next table fields:
+
+        | Field Name | Type | 
+        | ---------- | ---- | 
+        | id | String | 
+        | title | String |
+        | instruction | String | 
+        | embeding | SingleCollection |
+    - `legal-documents`
+        This Index is holding all the chunks of the Documents provided for the plugin review:
+        | Field Name | Type | 
+        | ---------- | ---- | 
+        | id | String |
+        | title | String |
+        | paragraph | String |
+        | keyphrases | StringCollection |
+        | summary | String | 
+        | embedding | SingleCollection | 
+        | filename | String | 
+        | department | String |
+        | data | DateTimeOffset | 
   
 ## User Interaction  
   
@@ -125,7 +148,7 @@ Working with the Docker file steps:
   
 ## Importing into Azure AI Studio  
   
-Import the PF Yaml file from the PromptFlow folder and configure the necessary connections.  
+Import the PF Yaml file from the PromptFlow folder and configure the necessary connections.
   
 ## Intellectual Property and Licensing  
   

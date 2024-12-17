@@ -1,0 +1,17 @@
+{
+  "package": {},
+  "code": {
+    "get_policys.py": {
+      "type": "python",
+      "inputs": {
+        "searchconnection": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "get_policys.py",
+      "function": "list_policy_tool"
+    }
+  }
+}
