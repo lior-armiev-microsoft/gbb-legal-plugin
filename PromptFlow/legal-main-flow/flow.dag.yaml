@@ -9,10 +9,119 @@ inputs:
   question:
     type: string
     is_chat_input: true
-    default: test
+    default: how are you today?
   query_type:
     type: int
-    default: 2
+    default: 3
+  group:
+    type: object
+    default:
+    - 2846190d-05dc-4048-90bc-7e236f34d84b
+    - 62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38
+    - be8ca378-bc74-46c1-b922-e7f552486ede
+    - 6c9764c1-fae1-4296-9144-ff3908561964
+    - 0587cbb9-18eb-47b4-bae8-537a21eb3c66
+    - 22a229bd-c7a2-49d0-9eaa-e1fc888daac6
+    - e7c43d00-4200-44fe-8bdb-d48fc4841e2a
+    - df4eda15-6bf7-43dc-8dff-7f88e04c1745
+    - 8f40af55-5617-43d0-8052-24488edd9d66
+    - ee5d95f9-f7f8-4669-a18e-2802b0ed3a36
+    - 2ab5aa1f-e4cf-4ae2-a472-662001c44fe4
+    - 4bc66884-faa5-473f-94c3-5a2ad3c63705
+    - e5874f86-adbc-48d8-b9fe-7c47a29da1e8
+    - fc52fffa-77a5-4cae-8b12-ad21e6e2efbe
+    - ae3f49ce-e545-4942-be26-577ce9f2748b
+    - 63eacbbb-5734-4d38-abbb-852d76bcd808
+    - 22cc2a5e-87fa-4294-b7b5-07bbe753ece2
+    - 7b53c5b7-83d1-41c0-9fae-f74baacf3718
+    - 83f6d52f-e653-4448-b74b-3edb34daca1a
+    - 9bac80e6-7dac-4b2d-913b-2f6da8093c01
+    - d0ced32b-7d59-4ffc-9268-3a28481c6199
+    - b01c14a4-e774-4d7b-ae36-d527ca650efc
+    - 1918e090-808a-4451-bb5b-fa64e7a21649
+    - fdfada34-64ff-4f1b-8f01-b9a9de862e5b
+    - 930f3640-afcf-46b4-960a-4ba101ac4dcb
+    - 125e2ff1-8ed5-45aa-8869-672d35da8fb7
+    - 3c7d0332-b145-43d8-9eac-7f50215c3f3d
+    - 29df1517-3bf3-4813-b64f-18d27087d433
+    - 45848b1a-10b2-46d1-a0d5-ac729addc8da
+    - 68ac2316-bae8-496d-bd3e-5a43e9be585e
+    - 6f43482a-fac5-428f-bed7-585e9907913c
+    - 58800eb4-3940-4934-b3eb-dfd2ac64a862
+    - 6d786d4d-b9dc-4c1b-8d5f-99b03052d927
+    - 01313da8-cd35-4f96-b10e-06e604ac61b1
+    - fcad0479-3c32-4171-bec4-35fcd92fe9c8
+    - 325cb0c8-9e22-4945-90b2-f8e2823df456
+    - 493913d0-21d6-4b75-99cf-09a0e8c821ff
+    - c529f08d-9fd6-4fb2-9022-9f4492c062bb
+    - cc127b7a-6952-47f3-8a20-7c5b9f10dfdf
+    - 12913edf-500c-403c-a6dc-83dff37ec6c9
+    - f5105623-6074-4a1e-8bf6-dc55dc8eb202
+    - eb932e3d-719e-4176-8fd9-22177e569611
+    - f8e9009f-d74b-425f-838e-d52ccfde3ec2
+    - dee2604e-dd43-4e4c-a4fd-ae30e8784d18
+    - afae2b88-b230-4e23-99a2-d49dd1ba88ce
+    - 29facc74-b86d-4ca6-9dda-b02acebb4f8c
+    - ff8be805-b9fd-40f7-b61d-c546d23d9b5d
+    - 0faf8fa7-c3fc-491d-907e-ed6a0f98aaa0
+    - 1e0269a0-3045-4451-902d-0df64ca41c2b
+    - 3c7da4ce-eca7-44a6-bb0d-36daf885fd5f
+    - af33e408-7a29-4fea-801c-51a1cbb5f93b
+    - ef6935d4-b06f-460b-a118-a5587902db4d
+    - 118ecd73-53f4-4cdd-9f32-88d0d08ebc8b
+    - bbb4222f-fe43-4823-a684-7993aacda113
+    - 60c24d07-fcba-4451-886c-2390d8d62ed4
+    - 446f116b-7766-4cc4-a65d-e6d3b8d3bed5
+    - aacaec20-9511-4825-b7c4-032fddccee87
+    - ad946f23-a4ea-4b4b-8aaf-c7ddbf4d0a17
+    - 84496005-0a05-4773-85c0-a32b11d9718b
+    - 759ba13e-ad07-4546-a2dc-04fa45ff52f1
+    - e82541bf-8972-4991-8cd1-80af7fa74b70
+    - 0ba4bea3-4aee-4cb9-ad6c-1d262df2cc63
+    - 15e49673-a7d8-49b8-85a2-3d787e6ab87e
+    - 49c878cc-6f5b-45f5-b81e-f325107c9ef5
+    - 63d988cb-ead4-4084-8099-7fc2173e18cc
+    - 263d0689-8277-42f9-9e54-a8d87b6f7391
+    - 214fa36c-ed7c-4537-96a5-8c65934b8d96
+    - 738205b4-5835-4ec0-88e9-e59e0a1c3a1e
+    - 93a1fefe-0810-4c97-9fd3-d44488d5265c
+    - 61853923-18cf-4413-8cf7-8d7c13f57f5b
+    - 9bb32eaa-f731-450f-9fa0-ac1301b22745
+    - 9a24c264-170f-4bbb-98bc-753f46f8cd95
+    - 72eea20c-46fc-46c7-929f-14f55fa7a107
+    - 2b3072a8-4168-4316-bed2-4243bc8dbdc8
+    - ed3f4d9c-3b98-4e16-b1d3-96bdc31c47e4
+    - fe3256bd-2b6f-4914-a14b-b9bec92d4b14
+    - 30802783-c552-4b4d-87b0-810ba80c3f0d
+    - 6aa1640b-b6f8-4f12-8e7a-7b2e1c264080
+    - ef8a1c02-c9a7-452e-82d5-00fe36b8c6e1
+    - 5b1d492b-980c-4e02-901a-5c235a46578d
+    - de0ff2a7-f0a8-42e2-8cca-7cc0e8865f6d
+    - 4487e3e6-b92c-44de-a10f-7f23b3c25aa3
+    - 7af646d6-d584-4ee6-a8d1-f49712caf5a4
+    - cfe74cdb-5449-4059-b6c6-7275dab6dc9d
+    - d5db9d23-5c30-47e5-a43d-84f690425a6f
+    - 7def1ae4-7999-4f03-b5fb-2f1b3cc5d4df
+    - 3ab062eb-3e61-493b-9601-2b6196c9c08f
+    - b17405ad-2094-4cca-bf1f-207cf1450e9d
+    - 1b11f439-2189-43c3-9be1-831defc5c721
+    - df361093-f4d5-4f97-a2bf-f9dc1c25f32a
+    - 06d17663-949b-4258-a46e-515ddfccbc28
+    - fa6f1fad-103c-4491-9dd0-645ee68be401
+    - ae2c9af1-b82e-40a0-ac61-1ba10883f4e7
+    - 3f2b92d3-35ff-458a-9450-f5de879b01b8
+    - 22254c10-a5b4-400c-8790-0f1a4e9d31d9
+    - afe2a44c-059c-43c4-bca1-068ba70e8515
+    - 3e1c0a65-e9a9-441b-84f2-4084e4022309
+    - 92b13bce-3589-4866-985e-ac59f6828d77
+    - 3775e98d-91f4-452d-9b2e-e5e41f4397fe
+    - 1f3b236e-f2d2-4e67-927b-5795da4aa6b8
+  language:
+    type: string
+    default: Russian
+  filename:
+    type: string
+    default: contract-for-the-purchase-of-goods-and-services.pdf
 outputs:
   answer:
     type: string
@@ -48,6 +157,8 @@ nodes:
     openai: azureopenai
     policy_list: ${search_policy.output}
     input_text: ${inputs.question}
+    ally: azuresearch
+    language: ${inputs.language}
 - name: search_policy
   type: python
   source:
@@ -57,6 +168,7 @@ nodes:
     searchconnection: azuresearch
     embeding: ${text_embedding.output}
     query: ${inputs.question}
+    groups: ${inputs.group}
 - name: text_embedding
   type: python
   source:
@@ -112,6 +224,8 @@ nodes:
     searchconnection: azuresearch
     embedinginput: ${query_embedding.output}
     query: ${inputs.question}
+    filename: ${inputs.filename}
+    groups: ${inputs.group}
 - name: ask_result_format
   type: python
   source:
@@ -121,3 +235,5 @@ nodes:
     query: ${inputs.question}
     search_result_list: ${search_doc.output}
     openai: azureopenai
+    ally: azuresearch
+    language: ${inputs.language}

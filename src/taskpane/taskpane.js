@@ -1,28 +1,46 @@
+// Description: This file contains the code to run the task pane add-in.
+// Dependencies: This file depends on the following files:
+//   1. src/taskpane/taskpane.css
+
 import { ask } from './Containers/aks.js'; 
 import { summary } from './Containers/summary_selected.js';
 import { document_summary } from './Containers/summary_document.js';
+
+import { createNestablePublicClientApplication } from "@azure/msal-browser";
+
+let pca = undefined;
 
 fetch("assets/config.json")
   .then((res) => res.text())
   .then((text) => {
     console.log("Config: ", text);
     const config = JSON.parse(text);
-    localStorage.setItem('azureOpenAIEndpoint', config['azure-openai-endpoint']);
-    localStorage.setItem('azureOpenAIKey', config['azure-openai-key']);
-    localStorage.setItem('azureOpenAIModelName', config['azure-openai-model']);
-    localStorage.setItem('azureOpenAIModelVersion', config['azure-openai-api-version']);
     localStorage.setItem('pfendpoint', config['prompt-flow-endpoint']);
+    localStorage.setItem('clientId', config['clientId']);
+    localStorage.setItem('authority', config['authority']);    
    })
   .catch((e) => console.error(e));
 
-Office.onReady((info) => {
+Office.onReady(async (info) => {
   if (info.host === Office.HostType.Word) {
-    document.getElementById("sideload-msg").style.display = "block";    
-    getOpenAIResponseDemo('1','',1).then((result) =>
+    document.getElementById("sideload-msg").style.display = "block"; 
+    
+    pca = await createNestablePublicClientApplication({
+      auth: {
+        clientId: localStorage.getItem('clientId'),
+        authority: localStorage.getItem('authority'),
+      },
+    });
+
+    getOpenAIResponseDemo(localStorage.getItem('pfendpoint')).then((result) =>
     {
+      // write the name of the user based on the profile from SSO
+      const name = localStorage.getItem("profile") ? JSON.parse(localStorage.getItem("profile")).displayName : "User";
+      const welcomeMessage = document.getElementById("title-with-name");
+      welcomeMessage.textContent = `Hello ${name}, ${welcomeMessage.textContent}`;
       console.log("Result: ", result);
       if (result != null) {
-        setTimeout(() => {
+        setTimeout(() => {          
           document.getElementById("sideload-msg").style.display = "none";
           document.getElementById("app-body").style.display = "flex";
           document.getElementById("ask-button").onclick = ask;
@@ -44,6 +62,71 @@ Office.onReady((info) => {
   }
 });
 
+async function sso() {
+  // Specify minimum scopes needed for the access token.
+  const tokenRequest = {
+    scopes: ["User.Read", "openid", "profile"],
+  };
+  let accessToken = null;
+
+  try {
+    console.log("Trying to acquire token silently...");
+    const userAccount = await pca.acquireTokenSilent(tokenRequest);
+    console.log("Acquired token silently.");
+    accessToken = userAccount.accessToken;
+  } catch (error) {
+    console.log(`Unable to acquire token silently: ${error}`);
+  }
+
+  if (accessToken === null) {
+    // Acquire token silent failure. Send an interactive request via popup.
+    try {
+      console.log("Trying to acquire token interactively...");
+      const userAccount = await pca.acquireTokenPopup(tokenRequest);
+      console.log("Acquired token interactively.");
+      accessToken = userAccount.accessToken;
+    } catch (popupError) {
+      // Acquire token interactive failure.
+      console.log(`Unable to acquire token interactively: ${popupError}`);
+    }
+  }
+
+  // Log error if both silent and popup requests failed.
+  if (accessToken === null) {
+    console.error(`Unable to acquire access token.`);
+    return;
+  }
+
+  // Call the Microsoft Graph API with the access token.
+  const response = await fetch(
+    `https://graph.microsoft.com/v1.0/me/memberOf?$select=displayName,id,description,mail,mailNickName,userPrincipalName`,
+    {
+      headers: { Authorization: accessToken },
+    }
+  );
+
+  const response_profile = await fetch(
+    `https://graph.microsoft.com/v1.0/me`,
+    {
+      headers: { Authorization: accessToken },
+    }
+  );
+
+
+  if (response.ok && response_profile.ok) {
+    // Write file names to the console.
+    const me = await response_profile.json();
+    // save to global variable for later use
+    localStorage.setItem('profile', JSON.stringify(me));
+    console.log("Profile: ", me);
+
+    const data = await response.json();
+    const groups = data.value.map((item) => item.id);
+    localStorage.setItem('groups', JSON.stringify(groups));
+    console.log("Groups: ", groups);
+  }
+
+  }
 
 function showErrorMessage(message) {
   const sideloadMsg = document.getElementById("sideload-msg");
@@ -106,67 +189,33 @@ function showSuccessMessage(message) {
   
 }
 
-
-
-// temporary function to set disabled the Demo version is on
-async function getOpenAIResponse(prompt,text,max_tokens) {
-  const azureOpenAIEndpoint = localStorage.getItem('azureOpenAIEndpoint')
-  const azureOpenAIKey = localStorage.getItem('azureOpenAIKey')
-  const azureOpenAIModelName = localStorage.getItem('azureOpenAIModelName')
-  const azureOpenAIAPIVersion = localStorage.getItem('azureOpenAIModelVersion')
-
-  const openaiurl = azureOpenAIEndpoint + "/openai/deployments/" + azureOpenAIModelName + "/chat/completions?api-version=" + azureOpenAIAPIVersion
-  const response = await fetch(openaiurl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'api-key': `${azureOpenAIKey}`
-    },
-
-    body: JSON.stringify({
-      messages: [
-        {
-          role: "system",
-          content: [
-            {
-              type: "text",
-              text: prompt
-            }
-          ]
-        },
-        {
-            role: "user",
-              content: [
-                {
-                  type: "text",
-                  text: text
-                }
-              ]
-        }  
-      ],
-      temperature: 0.0,
-      top_p: 0.95,
-      max_tokens: max_tokens
-    })
-  });
-
-  const data = await response.json();
-  console.log("Data: ", data);
-  if (response.ok) {
-    //console.log('Response from OpenAI:', data);
-    return data.choices[0].message.content;
-  } else {
-    console.error(data.error.message);
-    throw new Error(data.error.message || 'Unknown error from OpenAI');
-  }
-}
-
-async function getOpenAIResponseDemo(prompt,text,max_tokens)
+async function getOpenAIResponseDemo(pfuri)
 {
-  // waint 2 seconds
-  await new Promise(r => setTimeout(r, 100));
-  //get Office.ActiveView
-
-  return "hi"
+  // run sso function
+  if (localStorage.getItem('profile') == null && localStorage.getItem('groups') == null)
+    {
+      try {
+        await sso();
+      }
+      catch (error) {
+        return error;
+      }
+    }
+    else
+    {
+      console.log("Profile already exists");
+      console.log("Profile: ", JSON.parse(localStorage.getItem('profile')));
+      console.log("Groups: ", JSON.parse(localStorage.getItem('groups')));
+      
+    }
+  
+  const uri = new URL(pfuri).origin
+  return "Success";
 }
 
+// action on change of language-select
+document.getElementById("language-select").onchange = function() {
+  var lang = document.getElementById("language-select").value;
+  localStorage.setItem('language', lang);
+  console.log("Language: ", lang);
+}

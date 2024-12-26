@@ -172,6 +172,11 @@
     "documen_summary.py": {
       "type": "python",
       "inputs": {
+        "language": {
+          "type": [
+            "string"
+          ]
+        },
         "input_text": {
           "type": [
             "string"
@@ -185,6 +190,11 @@
         "openai": {
           "type": [
             "AzureOpenAIConnection"
+          ]
+        },
+        "ally": {
+          "type": [
+            "CustomConnection"
           ]
         }
       },
@@ -207,6 +217,11 @@
         "searchconnection": {
           "type": [
             "CustomConnection"
+          ]
+        },
+        "groups": {
+          "type": [
+            "list"
           ]
         }
       },
@@ -274,6 +289,16 @@
           "type": [
             "CustomConnection"
           ]
+        },
+        "filename": {
+          "type": [
+            "string"
+          ]
+        },
+        "groups": {
+          "type": [
+            "list"
+          ]
         }
       },
       "source": "search_doc.py",
@@ -295,6 +320,16 @@
         "openai": {
           "type": [
             "AzureOpenAIConnection"
+          ]
+        },
+        "ally": {
+          "type": [
+            "CustomConnection"
+          ]
+        },
+        "language": {
+          "type": [
+            "string"
           ]
         }
       },

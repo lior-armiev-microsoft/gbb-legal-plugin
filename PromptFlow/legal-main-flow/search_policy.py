@@ -5,17 +5,18 @@ from azure.search.documents import SearchClient
 from azure.search.documents.models import VectorizedQuery
 
 @tool
-def list_policy_tool(query: str, embeding:list, searchconnection: CustomConnection) -> object:
+def list_policy_tool(query: str, embeding:list, searchconnection: CustomConnection, groups: list) -> object:
     search_endpoint = searchconnection.endpoint
-    search_index = "legal-instructions"
-    search_key = searchconnection.key
-    # use ai azure search to query 
+    search_index = searchconnection.policy_index
+    search_key = searchconnection.key    
     
-    vector_query = VectorizedQuery(king="vector", vector=embeding, k_nearest_neighbors=1, fields="embeding")    
+    vector_query = VectorizedQuery(king="vector", vector=embeding, k_nearest_neighbors=1, fields="embeding")     
 
     search_client = SearchClient(search_endpoint, search_index, AzureKeyCredential(search_key))
+    group_filter = "adgroup/any(t: search.in(t, '{}'))".format(",".join(groups))
     results = search_client.search(
         search_text=query,  # Use '*' to match all documents
+        filter=group_filter, 
         vector_queries=[vector_query],
         select="title,instruction"     # Specify the fields to include in the results
     )
