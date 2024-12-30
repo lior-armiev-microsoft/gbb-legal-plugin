@@ -25,7 +25,7 @@
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    align-items: center;
+    -ms-flex-align: center; /* IE 10 */
  }
 
  .ms-welcome__main {
@@ -35,6 +35,7 @@
     -ms-flex-direction: column;
     flex-direction: column;
     -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap; /* IE 10 */
     flex-wrap: nowrap;
     -webkit-align-items: center;
     align-items: center;
@@ -340,7 +341,7 @@ h2 {
 }
 
 .carousel-text {
-  flex-grow: 1;
+  -ms-flex-positive: 1;
   text-align: left;
   padding: 0 10px;
 }

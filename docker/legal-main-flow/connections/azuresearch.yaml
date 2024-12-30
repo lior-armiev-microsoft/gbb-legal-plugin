@@ -1,0 +1,14 @@
+$schema: 
+  https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
+type: custom
+name: azuresearch
+configs:
+  document_index: legal-documents
+  policy_index: legal-instructions
+  model_deployment: gpt4o
+  embedding_deployment: ada002
+  api_version: 2024-08-01-preview
+  endpoint: https://gbbsearchtest1.search.windows.net
+secrets:
+  key: ${env:AZURESEARCH_KEY}
+module: promptflow.connections
