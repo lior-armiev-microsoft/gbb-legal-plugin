@@ -1,6 +1,8 @@
 node_modules
 src\config\config.json
 src/config/config.json
-files
 doc
-!files/hld.png
+files/*.ps
+files/*.py
+
+
