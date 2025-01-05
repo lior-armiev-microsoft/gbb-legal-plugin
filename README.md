@@ -1,5 +1,5 @@
 
-# Office 365 Legal Plugin  
+# Ally - Office 365 Legal Plugin  
 
 ## Overview  
   
@@ -150,18 +150,20 @@ Working with the Docker file steps:
 1. Go to docker folder in the project
 2. Run `docker build -t {Give you name for the container} .`
 3. Run the container with port `8083` and the next paramiters:
-configs:
-  openai_endpoint: ${env:ALLY_OPENAI_ENDPOINT}
-  search_document_index: ${env:ALLY_SEARCH_DOCUMENT_INDEX}
-  search_policy_index: ${env:ALLY_SEARCH_POLICY_INDEX}
-  openai_model_deployment: ${env:ALLY_OPENAI_MODEL_DEPLOYMENT}
-  openai_embedding_deployment: ${env:ALLY_OPENAI_EMBEDDING_DEPLOYMENT}
-  openai_api_version: ${env:ALLY_OPENAI_API_VERSION}
-  search_endpoint: ${env:ALLY_SEARCH_ENDPOINT}
-secrets:
-  openai_key: ${env:ALLY_OPENAI_KEY}
-  search_key: ${env:ALLY_SEARCH_KEY}
-4. Run the Word Plugin 
+
+- configs:
+  - openai_endpoint: ${env:ALLY_OPENAI_ENDPOINT}
+  - search_document_index: ${env:ALLY_SEARCH_DOCUMENT_INDEX}
+  - search_policy_index: ${env:ALLY_SEARCH_POLICY_INDEX}
+  - openai_model_deployment: ${env:ALLY_OPENAI_MODEL_DEPLOYMENT}
+  - openai_embedding_deployment: ${env:ALLY_OPENAI_EMBEDDING_DEPLOYMENT}
+  - openai_api_version: ${env:ALLY_OPENAI_API_VERSION}
+  - search_endpoint: ${env:ALLY_SEARCH_ENDPOINT}
+- secrets:
+  - openai_key: ${env:ALLY_OPENAI_KEY}
+  - search_key: ${env:ALLY_SEARCH_KEY}
+
+4. Run the Word Plugin
 5. Navigate to the solution directory.  
 6. Run `npm install` to install dependencies.  
 7. Start the plugin with `npm start`. 
