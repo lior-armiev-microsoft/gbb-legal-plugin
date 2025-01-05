@@ -6,9 +6,9 @@ from azure.search.documents.models import VectorizedQuery
 
 @tool
 def list_policy_tool(query: str, embeding:list, searchconnection: CustomConnection, groups: list) -> object:
-    search_endpoint = searchconnection.endpoint
-    search_index = searchconnection.policy_index
-    search_key = searchconnection.key    
+    search_endpoint = searchconnection.search_endpoint
+    search_index = searchconnection.search_policy_index
+    search_key = searchconnection.search_key    
     
     vector_query = VectorizedQuery(king="vector", vector=embeding, k_nearest_neighbors=1, fields="embeding")     
 

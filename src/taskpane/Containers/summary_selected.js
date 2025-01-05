@@ -340,7 +340,7 @@ function fixText(correctedText) {
       //insertCorrectedText(selectedOoxml) <------ Not working - not saving the formatting
 
       await context.sync();  
-      console.log("Text replaced with corrected text: ", correctedText);  
+      //console.log("Text replaced with corrected text: ", correctedText);  
   }).catch(function (error) {  
       console.log("Error: " + error);  
   });  
@@ -388,8 +388,8 @@ function saveSelectedText() {
     Office.context.document.getSelectedDataAsync(Office.CoercionType.Ooxml, function (result) {
         if (result.status === Office.AsyncResultStatus.Succeeded) {
             selectedOoxml = result.value;
-            console.log("Selected OOXML saved.");
-            console.log("Selected OOXML: ", selectedOoxml);
+            //console.log("Selected OOXML saved.");
+            //console.log("Selected OOXML: ", selectedOoxml);
         } else {
             console.log("Error: " + result.error.message);
         }

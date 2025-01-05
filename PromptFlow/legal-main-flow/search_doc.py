@@ -6,9 +6,9 @@ from azure.search.documents.models import VectorizedQuery
 
 @tool
 def search_doc_tool(query: str, embedinginput: list, searchconnection: CustomConnection, filename: str, groups: list) -> object:
-    search_endpoint = searchconnection.endpoint
-    search_index = "legal-documents"
-    search_key = searchconnection.key
+    search_endpoint = searchconnection.search_endpoint
+    search_index = searchconnection.search_document_index
+    search_key = searchconnection.search_key
 
     vector_query = VectorizedQuery(kind="vector", vector=embedinginput, k_nearest_neighbors=20, fields="embedding", exhaustive=True)
 

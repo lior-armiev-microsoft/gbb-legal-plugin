@@ -18,16 +18,16 @@ class SummaryResponse(BaseModel):
     PolicyItems: list[PolicyItem]
 
 @tool
-def python_tool(language:str, input_text: str, policy_list: list, openai: AzureOpenAIConnection, ally: CustomConnection) -> object:
+def python_tool(language:str, input_text: str, policy_list: list, ally: CustomConnection) -> object:
     
     if len(policy_list) == 0:
         return {"warning": "No policy items found."}
 
 
     client = AzureOpenAI(  
-        azure_endpoint=openai.api_base,  
-        api_key=openai.api_key,  
-        api_version=ally.api_version,
+        azure_endpoint=ally.openai_endpoint,  
+        api_key=ally.openai_key,  
+        api_version=ally.openai_api_version,
     )
     prompt = '''
      Task: Analyze the selected text from a document and compare it with relevant company policy items to assess compliance.
@@ -71,7 +71,7 @@ Use the following format for the output:
 The policy items provided in the list are:''' + json.dumps(policy_list, indent=2)
     
     openai_response = client.beta.chat.completions.parse(  
-        model=ally.model_deployment,  
+        model=ally.openai_model_deployment,  
         messages=[  
             {"role": "system", "content": prompt},  
             {"role": "user", "content": str(input_text)},  

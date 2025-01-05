@@ -1,5 +1,5 @@
 from promptflow.core import tool
-from promptflow.connections import AzureOpenAIConnection, CustomConnection
+from promptflow.connections import CustomConnection
 from pydantic import BaseModel 
 from openai import AzureOpenAI  
 from typing import List  
@@ -19,12 +19,12 @@ class AskGAResponse(BaseModel):
     Answer: str
 
 @tool
-def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnection, ally: CustomConnection, language: str ) -> object:
+def python_tool(query: str, search_result_list: list, ally: CustomConnection, language: str ) -> object:
     
     client = AzureOpenAI(  
-        azure_endpoint=openai.api_base,  
-        api_key=openai.api_key,  
-        api_version=ally.api_version,
+        azure_endpoint=ally.openai_endpoint,  
+        api_key=ally.openai_key,  
+        api_version=ally.openai_api_version,
     )
     
     # check if the search result list is empty
@@ -40,7 +40,7 @@ def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnect
         user question: ''' + str(query)
         
         openai_response = client.beta.chat.completions.parse(  
-        model=ally.model_deployment,  
+        model=ally.openai_model_deployment,  
         messages=[  
             {"role": "system", "content": prompt},  
             {"role": "user", "content": str(user_input)},  
@@ -99,7 +99,7 @@ def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnect
         query result: ''' + str(search_result_list)
 
         openai_response = client.beta.chat.completions.parse(  
-            model=ally.model_deployment,  
+            model=ally.openai_model_deployment,  
             messages=[  
                 {"role": "system", "content": prompt},  
                 {"role": "user", "content": user_input},  
