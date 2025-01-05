@@ -18,9 +18,9 @@ inputs:
   group:
     type: object
     default:
-      - 2846190d-05dc-4048-90bc-7e236f34d84b
-      - 62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38
-      - be8ca378-bc74-46c1-b922-e7f552486ede
+    - 2846190d-05dc-4048-90bc-7e236f34d84b
+    - 62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38
+    - be8ca378-bc74-46c1-b922-e7f552486ede
   language:
     type: string
     default: English
@@ -39,7 +39,7 @@ nodes:
     type: code
     path: list_policys.py
   inputs:
-    searchconnection: azuresearch
+    searchconnection: ally
     input: ${inputs.question}
   activate:
     when: ${inputs.query_type}
@@ -50,9 +50,9 @@ nodes:
     type: code
     path: summary_document.py
   inputs:
-    openai: azureopenai
     input_text: ${inputs.question}
     policy_list: ${list_policys.output}
+    ally: ally
 - name: selection_summary
   type: python
   source:

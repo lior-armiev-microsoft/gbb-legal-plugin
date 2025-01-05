@@ -40,52 +40,51 @@ To install and run the plugin locally, ensure you have the following:
 > [!NOTE]  
 > Use Azure OpenAi GPT4o with the `2024-08-06` model version
 
-## Installation  
+## Installation
   
 **Local Installation:**  
   
 1. Ensure all prerequisites are installed.  
-2. Clone the repository to your local machine.  
+2. Clone the repository to your local machine. 
 3. Navigate to the solution directory.  
 4. Run `npm install` to install dependencies.  
 5. Start the plugin with `npm start`.  
 6. Go to the PrompFlow  folder
-7. If not using Docker with PromptFlow you will need to create 2 connectors
-- Name: azuresearch
+7. If NOT using Docker with PromptFlow you will need to create 1 local connector in PF
+this can be done using PF Extention, please install PromptFlow Extention for VS Code,
 
-    This is a Custom connector not the PromptFlow "Azure AI Search" connector
-    this is the configuration file for the connector for example:
-    ```
-    $schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
-    type: custom
-    name: azuresearch
-    configs:
-    endpoint: ${env:AZURESEARCH_ENDPOINT}
-    secrets:
-    key: ${env:AZURESEARCH_KEY}
-    module: promptflow.connections
-    ```
+![Extention](./files/Screenshot%202025-01-05%20133207.png)
 
->[!NOTE]
->the only 2 paramiters needed are `endpoint` and `key`
+> [!NOTE]
+> please do install all PF prereqesist listed under the extention.
 
+8. create a connector under the connectrs tub with the name "ally"
 
-- Name: azureopenai
+![Connector](./files/Screenshot%202025-01-05%20133650.png)
 
-    This is an AzureOpenAI Connector with the next schema:
-    ```
-    $schema: https://azuremlschemas.azureedge.net/promptflow/latest/AzureOpenAIConnection.schema.json
-    type: azure_open_ai
-    name: azureopenai
-    module: promptflow.connections
-    api_base: ${env:AZUREOPENAI_API_ENDPOINT}
-    api_key: ${env:AZUREOPENAI_API_KEY}
-    api_type: azure
-    api_version: ${env:AZUREOPENAI_API_VERSION}
-    auth_mode: key
-    ```
+in the opened screen fill in the next information:
 
-    using PromptFlow Plugin for VSCode is recomanded.
+```
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/CustomConnection.schema.json
+name: "ally"
+type: custom
+configs:
+  openai_endpoint: "https://xxxxxxxxxx.openai.azure.com/"
+  search_document_index: "legal-documents"
+  search_policy_index: "legal-instructions"
+  openai_model_deployment: "gpt4o"
+  openai_embedding_deployment: "ada002"
+  openai_api_version: "2024-08-01-preview"
+  search_endpoint: "https://xxxxxxxx.search.windows.net"
+secrets:
+  openai_key: "<user-input>"
+  search_key: "<user-input>"
+```
+> [!NOTE]
+> remove all unneeded key/paramiters like key1 if its shows in the created schema before you save
+
+> [!NOTE]
+> the name "ally" is used in the ymal file so if you choose to use a connector with diffrent name, do change it in the PF yaml
 
 8. Run `pf flow serve --source . --port 8083 --host localhost`
 9. This will load a local web on port `8083` and can be used by the Plugin
@@ -95,7 +94,10 @@ To install and run the plugin locally, ensure you have the following:
 
 **Office 365 Deployment:**  
   
-- (Instructions TBD)  
+- under Development there is no need to do any changes under Office, as this repo will create and aloocate the plugin localy on this muchine
+- in production there are steps to create an Add on in the Addon list and provide the URL for the location of the deployment under Azure WebApp
+
+[Deploy and publish Office Add-ins](https://learn.microsoft.com/en-us/office/dev/add-ins/publish/publish)
   
 ## Azure Services Configuration  
   
@@ -104,25 +106,37 @@ To install and run the plugin locally, ensure you have the following:
     - `legal-instructions`
         This Index is holding add customer Policy Chunks with the next table fields:
 
-        | Field Name | Type | 
-        | ---------- | ---- | 
-        | id | String | 
-        | title | String |
-        | instruction | String | 
-        | embeding | SingleCollection |
+        | Field Name | Type | Description | 
+        | ---------- | ---- | ----------- |
+        | id | Int32 | Key
+        | title | String | Policy Title
+        | instruction | String | Policy instructions
+        | embeding | SingleCollection | Embedding of the policy instruction 
+        | tags | StringCollection | tags
+        | locked | Boolean | is changeble
+        | groups | StringCollection | list of Active Directory ID's that are related to this policy
+        | severity | Int32 | 2 - Warning, 1 - Critical
+
+
     - `legal-documents`
         This Index is holding all the chunks of the Documents provided for the plugin review:
-        | Field Name | Type | 
-        | ---------- | ---- | 
-        | id | String |
-        | title | String |
+        | Field Name | Type | Description |
+        | ---------- | ---- | ----------- |
+        | id | Int32 | Key
+        | title | String | 
         | paragraph | String |
-        | keyphrases | StringCollection |
-        | summary | String | 
-        | embedding | SingleCollection | 
+        | keyphrases | StringCollection | Generated by Skill and LLM
+        | summary | String | Generated by Skill and LLM
+        | embedding | SingleCollection | Embedding ada002
         | filename | String | 
-        | department | String |
+        | department | String | for filtter if needed 
         | data | DateTimeOffset | 
+        | group | StringCollection | this is a list of AD Permissions for extraction of the chunk
+        | isCompliant | Boolean | Skill that by LLM check for compliance 
+        | CompliantCollection | StringCollection | List of relevan Policies
+        | NonCompliantCollection | StringCollection | List of relevan Policies
+
+
   
 ## User Interaction  
   
@@ -136,11 +150,17 @@ Working with the Docker file steps:
 1. Go to docker folder in the project
 2. Run `docker build -t {Give you name for the container} .`
 3. Run the container with port `8083` and the next paramiters:
-    - AZURESEARCH_KEY
-    - AZURESEARCH_ENDPOINT
-    - AZUREOPENAI_API_KEY
-    - AZUREOPENAI_API_ENDPOINT
-    - AZUREOPENAI_API_VERSION `2024-08-06`
+configs:
+  openai_endpoint: ${env:ALLY_OPENAI_ENDPOINT}
+  search_document_index: ${env:ALLY_SEARCH_DOCUMENT_INDEX}
+  search_policy_index: ${env:ALLY_SEARCH_POLICY_INDEX}
+  openai_model_deployment: ${env:ALLY_OPENAI_MODEL_DEPLOYMENT}
+  openai_embedding_deployment: ${env:ALLY_OPENAI_EMBEDDING_DEPLOYMENT}
+  openai_api_version: ${env:ALLY_OPENAI_API_VERSION}
+  search_endpoint: ${env:ALLY_SEARCH_ENDPOINT}
+secrets:
+  openai_key: ${env:ALLY_OPENAI_KEY}
+  search_key: ${env:ALLY_SEARCH_KEY}
 4. Run the Word Plugin 
 5. Navigate to the solution directory.  
 6. Run `npm install` to install dependencies.  

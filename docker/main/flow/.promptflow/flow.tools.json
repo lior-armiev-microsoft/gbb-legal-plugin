@@ -30,9 +30,9 @@
                         "list"
                     ]
                 },
-                "openai": {
+                "ally": {
                     "type": [
-                        "AzureOpenAIConnection"
+                        "CustomConnection"
                     ]
                 }
             },
@@ -55,11 +55,6 @@
                 "policy_list": {
                     "type": [
                         "list"
-                    ]
-                },
-                "openai": {
-                    "type": [
-                        "AzureOpenAIConnection"
                     ]
                 },
                 "ally": {
@@ -133,9 +128,9 @@
                         "string"
                     ]
                 },
-                "openai": {
+                "ally": {
                     "type": [
-                        "AzureOpenAIConnection"
+                        "CustomConnection"
                     ]
                 }
             },
@@ -187,11 +182,6 @@
                         "list"
                     ]
                 },
-                "openai": {
-                    "type": [
-                        "AzureOpenAIConnection"
-                    ]
-                },
                 "ally": {
                     "type": [
                         "CustomConnection"
@@ -205,6 +195,23 @@
             },
             "source": "ask_result_format.py",
             "function": "python_tool"
+        },
+        "python_text_embedding.py": {
+            "type": "python",
+            "inputs": {
+                "input": {
+                    "type": [
+                        "string"
+                    ]
+                },
+                "ally": {
+                    "type": [
+                        "CustomConnection"
+                    ]
+                }
+            },
+            "source": "python_text_embedding.py",
+            "function": "my_python_tool"
         }
     },
     "package": {

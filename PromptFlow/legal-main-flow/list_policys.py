@@ -9,9 +9,9 @@ from azure.search.documents import SearchClient
 # Please update the function name/signature per need
 @tool
 def list_policy_tool(input:str, searchconnection: CustomConnection) -> object:
-    search_endpoint = searchconnection.endpoint
-    search_index = "legal-instructions"
-    search_key = searchconnection.key
+    search_endpoint = searchconnection.search_endpoint
+    search_index = searchconnection.search_policy_index
+    search_key = searchconnection.search_key
     # use ai azure search to query 
 
     search_client = SearchClient(search_endpoint, search_index, AzureKeyCredential(search_key))

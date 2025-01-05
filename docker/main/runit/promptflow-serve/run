@@ -5,8 +5,7 @@ export PATH="$CONDA_ENV_PATH/bin:$PATH"
 
 ls
 ls /connections
-pf connection create --file /connections/azuresearch.yaml
-pf connection create --file /connections/azureopenai.yaml
+pf connection create --file /connections/ally.yaml
 WORKER_NUM=${PROMPTFLOW_WORKER_NUM:-"8"}
 WORKER_THREADS=${PROMPTFLOW_WORKER_THREADS:-"1"}
 SERVING_ENGINE=${PROMPTFLOW_SERVING_ENGINE:-"flask"}

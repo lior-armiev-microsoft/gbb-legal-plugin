@@ -1,5 +1,5 @@
 from promptflow.core import tool
-from promptflow.connections import AzureOpenAIConnection
+from promptflow.connections import CustomConnection
 from pydantic import BaseModel 
 from openai import AzureOpenAI  
 from typing import List  
@@ -17,12 +17,12 @@ class SummaryResponse(BaseModel):
     PolicyItems: list[PolicyItem]
 
 @tool
-def python_tool(input_text: str, policy_list: list, openai: AzureOpenAIConnection) -> object:
+def python_tool(input_text: str, policy_list: list, ally: CustomConnection ) -> object:
     
     client = AzureOpenAI(  
-        azure_endpoint=openai.api_base,  
-        api_key=openai.api_key,  
-        api_version="2024-08-01-preview"
+        azure_endpoint=ally.openai_endpoint,  
+        api_key=ally.openai_key,  
+        api_version=ally.openai_api_version
     )
             # summarize the document provided by the user, the summary will be only on the policy items provided. Return the analysis in the following JSON format, the format is as follows: 
     prompt = '''
@@ -46,7 +46,7 @@ def python_tool(input_text: str, policy_list: list, openai: AzureOpenAIConnectio
     9. The policy items provided in the list are:
             ''' + str(policy_list)
     openai_response = client.beta.chat.completions.parse(  
-        model="gpt4o",  
+        model=ally.openai_model_deployment,
         messages=[  
             {"role": "system", "content": prompt},  
             {"role": "user", "content": str(input_text)},  

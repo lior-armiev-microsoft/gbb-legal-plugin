@@ -1,5 +1,5 @@
 from promptflow.core import tool
-from promptflow.connections import AzureOpenAIConnection, CustomConnection
+from promptflow.connections import CustomConnection
 from pydantic import BaseModel 
 from openai import AzureOpenAI  
 from typing import List  
@@ -19,12 +19,12 @@ class AskGAResponse(BaseModel):
     Answer: str
 
 @tool
-def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnection, ally: CustomConnection, language: str ) -> object:
+def python_tool(query: str, search_result_list: list, ally: CustomConnection, language: str ) -> object:
     
     client = AzureOpenAI(  
-        azure_endpoint=openai.api_base,  
-        api_key=openai.api_key,  
-        api_version=ally.api_version,
+        azure_endpoint=ally.openai_endpoint,  
+        api_key=ally.openai_key,  
+        api_version=ally.openai_api_version,
     )
     
     # check if the search result list is empty
@@ -40,7 +40,7 @@ def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnect
         user question: ''' + str(query)
         
         openai_response = client.beta.chat.completions.parse(  
-        model=ally.model_deployment,  
+        model=ally.openai_model_deployment,  
         messages=[  
             {"role": "system", "content": prompt},  
             {"role": "user", "content": str(user_input)},  
@@ -54,11 +54,15 @@ def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnect
         except Exception as e:  
             print(f"Error converting to JSON sentiment from OpenAI: {e}")
             return  
-    else:  
-        
-        
+    else:         
         prompt = '''
-        Task: Answer the user's question based on relevant provided paragraphs from the document.
+    Task: check the search result and the origianl question. 
+    check if the search result is relevant to the question. 
+    If not, try to answer the question based on code of Law, from your own knowledge and in ''' + str(language) + '''. 
+    do note that the answer is generated based on the code of Law and not from any internal company information or policy.
+    DO NOT ADD the search_result (query result) in the JSON output add an empty [].
+
+    if the search result is relevant to the question, answer the question based on the search result and based on the instructions below:
 
     Instructions:
 
@@ -95,10 +99,10 @@ def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnect
         query result: ''' + str(search_result_list)
 
         openai_response = client.beta.chat.completions.parse(  
-            model=ally.model_deployment,  
+            model=ally.openai_model_deployment,  
             messages=[  
                 {"role": "system", "content": prompt},  
-                {"role": "user", "content": str(user_input)},  
+                {"role": "user", "content": user_input},  
             ],  
             response_format=AskResponse,  
         )  
@@ -112,3 +116,4 @@ def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnect
 
 
         return response
+    
