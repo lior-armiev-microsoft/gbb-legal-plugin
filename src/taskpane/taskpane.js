@@ -17,25 +17,33 @@ fetch("assets/config.json")
     const config = JSON.parse(text);
     localStorage.setItem('pfendpoint', config['prompt-flow-endpoint']);
     localStorage.setItem('clientId', config['clientId']);
-    localStorage.setItem('authority', config['authority']);    
+    localStorage.setItem('authority', config['authority']);
+    localStorage.setItem('sso-enabled', config['sso-enabled']);
+     
    })
   .catch((e) => console.error(e));
 
 Office.onReady(async (info) => {
   if (info.host === Office.HostType.Word) {
     document.getElementById("sideload-msg").style.display = "block"; 
+    const filename = Office.context.document.url.split('\\').pop().split('/').pop()
+    localStorage.setItem('filename', filename);
     
+    
+  if (localStorage.getItem('sso-enabled') == "true"){
     pca = await createNestablePublicClientApplication({
       auth: {
         clientId: localStorage.getItem('clientId'),
         authority: localStorage.getItem('authority'),
       },
     });
+  }
 
     getOpenAIResponseDemo(localStorage.getItem('pfendpoint')).then((result) =>
     {
       // write the name of the user based on the profile from SSO
       const name = localStorage.getItem("profile") ? JSON.parse(localStorage.getItem("profile")).displayName : "User";
+      
       const welcomeMessage = document.getElementById("title-with-name");
       welcomeMessage.textContent = `Hello ${name}, ${welcomeMessage.textContent}`;
       console.log("Result: ", result);
@@ -151,6 +159,8 @@ function showErrorMessage(message) {
 
 export async function reset_cache() {
   localStorage.removeItem('FullSummaryData');
+  localStorage.removeItem('groups');
+  localStorage.removeItem('profile');
   showSuccessMessage("Cache has been reset successfully");
 }
 
@@ -191,11 +201,39 @@ function showSuccessMessage(message) {
 
 async function getOpenAIResponseDemo(pfuri)
 {
-  // run sso function
-  if (localStorage.getItem('profile') == null && localStorage.getItem('groups') == null)
+  // run sso function to get the profile and groups is SSO is enabled else use the demo profile and groups
+  if ((localStorage.getItem('profile') == null && localStorage.getItem('groups') == null) || localStorage.getItem('sso-enabled') == "true")
     {
       try {
-        await sso();
+        if (localStorage.getItem('sso-enabled') == "true"){
+          console.log("SSO enabled");
+          await sso();
+        }
+        else
+        {
+          console.log("SSO not enabled");
+          const profile = JSON.stringify(
+          {
+            "businessPhones": [],
+            "displayName": "John Doe",
+            "givenName": "John",
+            "jobTitle": "Legal professional",
+            "mail": "jhon.doe@microsoft.com",
+            "mobilePhone": null,
+            "officeLocation": "",
+            "preferredLanguage": null,
+            "surname": "Doe",
+            "userPrincipalName": "john.doe@microsoft.com",
+            "id": "877e9802-b713-4250-8701-c70d2c1e9a42"
+        })
+          console.log("Profile: ", profile);
+          localStorage.setItem('profile', profile);
+          
+          localStorage.setItem('groups',['2846190d-05dc-4048-90bc-7e236f34d84b', '62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38']);
+
+          console.log("Profile: ", JSON.parse(localStorage.getItem('profile')));
+          console.log("Groups: ", localStorage.getItem('groups'));
+        }
       }
       catch (error) {
         return error;
@@ -205,7 +243,8 @@ async function getOpenAIResponseDemo(pfuri)
     {
       console.log("Profile already exists");
       console.log("Profile: ", JSON.parse(localStorage.getItem('profile')));
-      console.log("Groups: ", JSON.parse(localStorage.getItem('groups')));
+      console.log("Groups: ", localStorage.getItem('groups'));
+      
       
     }
   

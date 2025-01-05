@@ -54,11 +54,15 @@ def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnect
         except Exception as e:  
             print(f"Error converting to JSON sentiment from OpenAI: {e}")
             return  
-    else:  
-        
-        
+    else:         
         prompt = '''
-        Task: Answer the user's question based on relevant provided paragraphs from the document.
+    Task: check the search result and the origianl question. 
+    check if the search result is relevant to the question. 
+    If not, try to answer the question based on code of Law, from your own knowledge and in ''' + str(language) + '''. 
+    do note that the answer is generated based on the code of Law and not from any internal company information or policy.
+    DO NOT ADD the search_result (query result) in the JSON output add an empty [].
+
+    if the search result is relevant to the question, answer the question based on the search result and based on the instructions below:
 
     Instructions:
 
@@ -98,7 +102,7 @@ def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnect
             model=ally.model_deployment,  
             messages=[  
                 {"role": "system", "content": prompt},  
-                {"role": "user", "content": str(user_input)},  
+                {"role": "user", "content": user_input},  
             ],  
             response_format=AskResponse,  
         )  
@@ -112,3 +116,4 @@ def python_tool(query: str, search_result_list: list, openai: AzureOpenAIConnect
 
 
         return response
+    

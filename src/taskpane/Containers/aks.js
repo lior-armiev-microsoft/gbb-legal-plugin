@@ -64,7 +64,7 @@ async function fetchData(endpoint, query, language) {
           'Content-Type': 'application/json'  
       },  
       body: JSON.stringify({  
-          query_type: 3,  
+          query_type: 3,
           question: query,  
           language: language 
       })  
@@ -78,6 +78,8 @@ function displaySearchResults(data) {
       container.innerHTML = ""; // Clear previous content  
   }  
 
+  console.log("Data: ", data);
+
   // Create and append elements to display results  
   const header = createHeader();  
   container.appendChild(header);  
@@ -85,8 +87,12 @@ function displaySearchResults(data) {
   const answerDiv = createAnswerDiv(data.Answer);  
   container.appendChild(answerDiv);  
 
-  const resultsDiv = createResultsDiv(data.SearchResults);  
-  container.appendChild(resultsDiv);  
+  // check if there are search results not empty. the SearchResults:  undefined
+  if (data.SearchResults !== undefined && data.SearchResults.length > 0) {
+    console.log("SearchResults: ", data.SearchResults);
+    const resultsDiv = createResultsDiv(data.SearchResults);  
+    container.appendChild(resultsDiv);
+  }
 
   const tryAgainButton = createTryAgainButton();  
   container.appendChild(tryAgainButton);  
@@ -112,7 +118,7 @@ function createAnswerDiv(answer) {
 }  
 
 // Create a section for the list of search results  
-function createResultsDiv(results) {  
+function createResultsDiv(results) {
   const resultsDiv = document.createElement("div");  
   resultsDiv.classList.add("ask-results-container");  
 

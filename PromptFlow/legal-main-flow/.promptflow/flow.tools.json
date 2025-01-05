@@ -267,6 +267,11 @@
           "type": [
             "AzureOpenAIConnection"
           ]
+        },
+        "ally": {
+          "type": [
+            "CustomConnection"
+          ]
         }
       },
       "source": "summary_full_doc.py",

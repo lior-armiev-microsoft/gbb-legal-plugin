@@ -118,7 +118,7 @@ inputs:
     - 1f3b236e-f2d2-4e67-927b-5795da4aa6b8
   language:
     type: string
-    default: Russian
+    default: English
   filename:
     type: string
     default: contract-for-the-purchase-of-goods-and-services.pdf
@@ -200,6 +200,7 @@ nodes:
   inputs:
     openai: azureopenai
     input_text: ${inputs.question}
+    ally: azuresearch
   activate:
     when: ${inputs.query_type}
     is: 1
