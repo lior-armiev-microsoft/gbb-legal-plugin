@@ -16,6 +16,7 @@ fetch("assets/config.json")
     console.log("Config: ", text);
     const config = JSON.parse(text);
     localStorage.setItem('pfendpoint', config['prompt-flow-endpoint']);
+    localStorage.setItem('pfconfigendpoint', config['prompt-flow-config-endpoint']);
     localStorage.setItem('clientId', config['clientId']);
     localStorage.setItem('authority', config['authority']);
     localStorage.setItem('sso-enabled', config['sso-enabled']);
@@ -28,6 +29,8 @@ Office.onReady(async (info) => {
     document.getElementById("sideload-msg").style.display = "block"; 
     const filename = Office.context.document.url.split('\\').pop().split('/').pop()
     localStorage.setItem('filename', filename);
+
+    
     
     
   if (localStorage.getItem('sso-enabled') == "true"){
@@ -250,6 +253,9 @@ async function getOpenAIResponseDemo(pfuri)
     }
   
   const uri = new URL(pfuri).origin
+  
+  checkdocumentindex()
+  
   return "Success";
 }
 
@@ -259,3 +265,36 @@ document.getElementById("language-select").onchange = function() {
   localStorage.setItem('language', lang);
   console.log("Language: ", lang);
 }
+
+async function checkdocumentindex()
+{
+  // check if the document has been indexed
+  console.log("check index")
+  console.log(localStorage.getItem('filename'));
+  const response = await fetchData(localStorage.getItem('pfendpoint'), localStorage.getItem('filename'), localStorage.getItem('groups'));       
+  const data = await response.json(); 
+  console.log(data.answer.Found);
+  
+  if (data.answer.Found == false)
+  {
+    document.getElementById("index-doc-container").style.display = "flex";    
+    //change lebel filename-notindexed-label to the filename
+    document.getElementById("filename-notindexed-label").textContent = localStorage.getItem('filename');
+    
+  }
+}
+
+
+async function fetchData(endpoint, filename, groups ) {  
+  return await fetch(endpoint, {  
+      method: 'POST',  
+      headers: {  
+          'Content-Type': 'application/json'  
+      },  
+      body: JSON.stringify({  
+          query_type: 99,
+          filename: filename,
+          groups: JSON.parse(groups)        
+      })  
+  });  
+}  

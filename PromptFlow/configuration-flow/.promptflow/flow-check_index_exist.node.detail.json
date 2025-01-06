@@ -1,0 +1,63 @@
+{
+  "flow_runs": [],
+  "node_runs": [
+    {
+      "node": "check_index_exist",
+      "flow_run_id": "93db1997-e477-4b08-bd35-860b5efe9b50",
+      "run_id": "93db1997-e477-4b08-bd35-860b5efe9b50_check_index_exist_ec007f74-9ebc-4276-9ef6-e2d0c47822d5",
+      "status": "Completed",
+      "inputs": {
+        "searchconnection": "ally",
+        "filename": "contract-for-the-purchase-of-goods-and-services.pdf",
+        "groups": [
+          "2846190d-05dc-4048-90bc-7e236f34d84b",
+          "62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38",
+          "be8ca378-bc74-46c1-b922-e7f552486ede"
+        ]
+      },
+      "output": true,
+      "metrics": null,
+      "error": null,
+      "parent_run_id": "93db1997-e477-4b08-bd35-860b5efe9b50",
+      "start_time": "2025-01-06T08:09:50.472807Z",
+      "end_time": "2025-01-06T08:09:53.398104Z",
+      "index": null,
+      "api_calls": [
+        {
+          "name": "my_python_tool",
+          "type": "Function",
+          "inputs": {
+            "searchconnection": "ally",
+            "filename": "contract-for-the-purchase-of-goods-and-services.pdf",
+            "groups": [
+              "2846190d-05dc-4048-90bc-7e236f34d84b",
+              "62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38",
+              "be8ca378-bc74-46c1-b922-e7f552486ede"
+            ]
+          },
+          "output": true,
+          "start_time": 1736143790.474321,
+          "end_time": 1736143793.396102,
+          "error": null,
+          "children": [],
+          "node_name": "check_index_exist",
+          "parent_id": "",
+          "id": "d6bc7645-75ba-42e3-a600-fa9dbaac8887",
+          "function": "my_python_tool",
+          "system_metrics": {}
+        }
+      ],
+      "cached_run_id": null,
+      "cached_flow_run_id": null,
+      "logs": {
+        "stdout": "",
+        "stderr": ""
+      },
+      "system_metrics": {
+        "duration": 2.925297
+      },
+      "result": true,
+      "message_format": "basic"
+    }
+  ]
+}

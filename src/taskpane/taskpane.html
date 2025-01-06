@@ -57,19 +57,7 @@
         </ul>
         <p class="ms-font-l">Select from the next <b>3</b> options.</p>
 
-        <!--- Create a button to index the current document -->
-        <!--  I need to have a script running in the background to index the document and when it is done, I will show a message that the document is indexed and ready for search and review. -->
-        <div class="container" id="index-doc-container" style="display: none;">
-            <h2>Index</h2>
-            <p>Your document seems to be <b>not</b> Indexed, For all Ai functions to work you must press the Index button</p>
-            <p>This process may take a few minutes</p>
-            <p>Index your contract to enable semantic search and review</p>
-            <div id="index-doc-spinner" style="display: none;" class="spinner"></div>
-            <button class="ms-Button ms-Button--primary search-button" id="index-doc-button">
-                <span class="ms-Button-label">Index Now</span>
-            </button>
-        </div>
-        <br>
+
 
         <div id="demo-container" class="container">
             <h2>Demo Functions</h2>         
@@ -101,6 +89,21 @@
 
         </div>
         <br>
+
+        <!--- Create a button to index the current document -->
+        <!--  I need to have a script running in the background to index the document and when it is done, I will show a message that the document is indexed and ready for search and review. -->
+        <div class="container" id="index-doc-container" style="display: none;">
+            <h2>Index is Missing</h2>
+            <p>Your document <b id="filename-notindexed-label"></b> seems to be <b>not</b> Indexed, For all Ai functions to work you must press the Index button</p>
+            <p>This process may take a few minutes</p>
+            <p>Index your contract to enable semantic search and review</p>
+            <div id="index-doc-spinner" style="display: none;" class="spinner"></div>
+            <button class="ms-Button ms-Button--primary search-button" id="index-doc-button">
+                <span class="ms-Button-label">Index Now</span>
+            </button>
+        </div>
+        <br>
+
         <div id="summary-container" class="container">
             <h2>Summary</h2>
             <p>Summarize the document to get a quick overview of the key clauses and provisions</p>

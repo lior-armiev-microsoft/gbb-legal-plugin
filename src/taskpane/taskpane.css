@@ -392,3 +392,17 @@ h2 {
   font-size: 0.9em;
   color: #555;
 }
+
+#index-doc-container {
+  display: flex;
+  border: 3px solid #d8ae22;
+  border-radius: 8px;
+
+  flex-direction: column;
+  display: none; /* Keep the initial display none */
+}
+
+/* Ensure the spinner is hidden initially */
+#index-doc-spinner {
+  display: none;
+}

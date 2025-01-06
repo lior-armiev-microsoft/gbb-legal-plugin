@@ -2,10 +2,19 @@ inputs:
   configuration_action:
     type: int
     default: 1
+  filename:
+    type: string
+    default: contract-for-the-purchase-of-goods-and-services.pdf
+  groups:
+    type: object
+    default:
+    - 2846190d-05dc-4048-90bc-7e236f34d84b
+    - 62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38
+    - be8ca378-bc74-46c1-b922-e7f552486ede
 outputs:
   output:
     type: string
-    reference: ${get_policys.output}
+    reference: ${check_index_exist.output}
 nodes:
 - name: get_policys
   type: python
@@ -14,3 +23,15 @@ nodes:
     path: get_policys.py
   inputs:
     searchconnection: azuresearch
+  activate:
+    when: "1"
+    is: 2
+- name: check_index_exist
+  type: python
+  source:
+    type: code
+    path: check_index_exist.py
+  inputs:
+    searchconnection: ally
+    filename: ${inputs.filename}
+    groups: ${inputs.groups}

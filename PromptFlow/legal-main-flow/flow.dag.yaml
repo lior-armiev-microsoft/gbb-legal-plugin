@@ -14,7 +14,7 @@ inputs:
       rules. "
   query_type:
     type: int
-    default: 2
+    default: 99
   group:
     type: object
     default:
@@ -83,6 +83,7 @@ nodes:
     input2: ${summary_document.output}
     input3: ${summary_full_doc.output}
     input4: ${ask_result_format.output}
+    input5: ${check_index.output}
   aggregation: false
 - name: summary_full_doc
   type: python
@@ -138,3 +139,15 @@ nodes:
   activate:
     when: ${inputs.query_type}
     is: 2
+- name: check_index
+  type: python
+  source:
+    type: code
+    path: check_index.py
+  inputs:
+    filename: ${inputs.filename}
+    groups: ${inputs.group}
+    searchconnection: ally
+  activate:
+    when: ${inputs.query_type}
+    is: 99

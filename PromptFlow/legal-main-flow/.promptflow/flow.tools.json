@@ -245,6 +245,11 @@
           "type": [
             "object"
           ]
+        },
+        "input5": {
+          "type": [
+            "string"
+          ]
         }
       },
       "source": "aggregation.py",
@@ -341,6 +346,28 @@
         }
       },
       "source": "python_text_embedding.py",
+      "function": "my_python_tool"
+    },
+    "check_index.py": {
+      "type": "python",
+      "inputs": {
+        "filename": {
+          "type": [
+            "string"
+          ]
+        },
+        "groups": {
+          "type": [
+            "object"
+          ]
+        },
+        "searchconnection": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "check_index.py",
       "function": "my_python_tool"
     }
   }

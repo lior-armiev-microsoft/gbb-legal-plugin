@@ -1,168 +1,222 @@
 {
   "flow_runs": [
     {
-      "run_id": "6025b187-856a-4716-8827-14c2d882b52d_0",
-      "status": "Completed",
-      "error": null,
-      "inputs": {
-        "configuration_action": 1
-      },
-      "output": {
-        "output": [
+      "run_id": "d2f588f6-a814-44f8-ad2c-59840122415e_0",
+      "status": "Failed",
+      "error": {
+        "message": "Execution failure in 'check_index_exist': (HttpResponseError) () Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\nCode: \nMessage: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter",
+        "messageFormat": "Execution failure in '{node_name}'.",
+        "messageParameters": {
+          "node_name": "check_index_exist"
+        },
+        "referenceCode": "Tool/__pf_main__",
+        "code": "UserError",
+        "innerError": {
+          "code": "ToolExecutionError",
+          "innerError": null
+        },
+        "additionalInfo": [
           {
-            "title": "Limitation of Liability",
-            "instruction": "Seller will not be liable under this Contract for more than the Contract Price paid under this Contract during the 12 months before the claim arises."
-          },
-          {
-            "title": "Governing Law",
-            "instruction": "All contructs in the company must be governed by the laws of the state of Delaware"
+            "type": "ToolExecutionErrorDetails",
+            "info": {
+              "type": "HttpResponseError",
+              "message": "() Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\nCode: \nMessage: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter",
+              "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\tracing\\_trace.py\", line 556, in wrapped\n    output = func(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\temp\\wordplugin1\\gbbwordplugin1 - v3\\PromptFlow\\configuration-flow\\check_index_exist.py\", line 27, in my_python_tool\n    for result in results:\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_paging.py\", line 54, in __next__\n    return next(self._page_iterator)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Roaming\\Python\\Python312\\site-packages\\azure\\core\\paging.py\", line 75, in __next__\n    self._response = self._get_next(self.continuation_token)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_paging.py\", line 125, in _get_next_cb\n    return self._client.documents.search_post(search_request=self._initial_query.request, **self._kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Roaming\\Python\\Python312\\site-packages\\azure\\core\\tracing\\decorator.py\", line 78, in wrapper_use_tracer\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_generated\\operations\\_documents_operations.py\", line 778, in search_post\n    raise HttpResponseError(response=response, model=error)\nazure.core.exceptions.HttpResponseError: () Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\nCode: \nMessage: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\n",
+              "filename": "C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_generated\\operations\\_documents_operations.py",
+              "lineno": 778,
+              "name": "search_post"
+            }
           }
-        ]
+        ],
+        "debugInfo": {
+          "type": "ToolExecutionError",
+          "message": "Execution failure in 'check_index_exist': (HttpResponseError) () Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\nCode: \nMessage: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter",
+          "stackTrace": "\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\flow_executor.py\", line 1034, in _exec\n    output, aggregation_inputs = self._exec_inner_with_trace(\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\flow_executor.py\", line 937, in _exec_inner_with_trace\n    output, nodes_outputs = self._traverse_nodes(inputs, context)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\flow_executor.py\", line 1215, in _traverse_nodes\n    nodes_outputs, bypassed_nodes = self._submit_to_scheduler(context, inputs, batch_nodes)\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\flow_executor.py\", line 1270, in _submit_to_scheduler\n    return scheduler.execute(self._line_timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 131, in execute\n    raise e\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 113, in execute\n    self._dag_manager.complete_nodes(self._collect_outputs(completed_futures))\n                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 160, in _collect_outputs\n    each_node_result = each_future.result()\n                       ^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\concurrent\\futures\\_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\concurrent\\futures\\_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\concurrent\\futures\\thread.py\", line 58, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 181, in _exec_single_node_in_thread\n    result = context.invoke_tool(node, f, kwargs=kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 90, in invoke_tool\n    result = self._invoke_tool_inner(node, f, kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 206, in _invoke_tool_inner\n    raise ToolExecutionError(node_name=node_name, module=module) from e\n",
+          "innerException": {
+            "type": "HttpResponseError",
+            "message": "() Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\nCode: \nMessage: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter",
+            "stackTrace": "Traceback (most recent call last):\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 182, in _invoke_tool_inner\n    return f(**kwargs)\n           ^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\tracing\\_trace.py\", line 556, in wrapped\n    output = func(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\temp\\wordplugin1\\gbbwordplugin1 - v3\\PromptFlow\\configuration-flow\\check_index_exist.py\", line 27, in my_python_tool\n    for result in results:\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_paging.py\", line 54, in __next__\n    return next(self._page_iterator)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Roaming\\Python\\Python312\\site-packages\\azure\\core\\paging.py\", line 75, in __next__\n    self._response = self._get_next(self.continuation_token)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_paging.py\", line 125, in _get_next_cb\n    return self._client.documents.search_post(search_request=self._initial_query.request, **self._kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Roaming\\Python\\Python312\\site-packages\\azure\\core\\tracing\\decorator.py\", line 78, in wrapper_use_tracer\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_generated\\operations\\_documents_operations.py\", line 778, in search_post\n    raise HttpResponseError(response=response, model=error)\n",
+            "innerException": null
+          }
+        }
       },
+      "inputs": {
+        "configuration_action": 1,
+        "filename": "contract-for-the-purchase-of-goods-and-services.pdf",
+        "groups": "[\"2846190d-05dc-4048-90bc-7e236f34d84b\",\"62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38\",\"be8ca378-bc74-46c1-b922-e7f552486ede\"]"
+      },
+      "output": null,
       "metrics": null,
       "request": null,
-      "parent_run_id": "6025b187-856a-4716-8827-14c2d882b52d",
-      "root_run_id": "6025b187-856a-4716-8827-14c2d882b52d",
+      "parent_run_id": "d2f588f6-a814-44f8-ad2c-59840122415e",
+      "root_run_id": "d2f588f6-a814-44f8-ad2c-59840122415e",
       "source_run_id": null,
       "flow_id": "default_flow_id",
-      "start_time": "2024-12-02T15:25:36.104240Z",
-      "end_time": "2024-12-02T15:25:36.703518Z",
+      "start_time": "2025-01-06T07:54:04.987860Z",
+      "end_time": "2025-01-06T07:54:05.964122Z",
       "index": 0,
       "api_calls": [
         {
           "name": "flow",
           "node_name": "flow",
           "type": "Flow",
-          "start_time": 1733145936.10424,
-          "end_time": 1733145936.703518,
+          "start_time": 1736142844.98786,
+          "end_time": 1736142845.964122,
           "children": [
             {
-              "name": "list_policy_tool",
+              "name": "my_python_tool",
               "type": "Function",
               "inputs": {
-                "searchconnection": "azuresearch"
+                "searchconnection": "ally",
+                "filename": "contract-for-the-purchase-of-goods-and-services.pdf",
+                "groups": "[\"2846190d-05dc-4048-90bc-7e236f34d84b\",\"62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38\",\"be8ca378-bc74-46c1-b922-e7f552486ede\"]"
               },
-              "output": [
-                {
-                  "title": "Limitation of Liability",
-                  "instruction": "Seller will not be liable under this Contract for more than the Contract Price paid under this Contract during the 12 months before the claim arises."
-                },
-                {
-                  "title": "Governing Law",
-                  "instruction": "All contructs in the company must be governed by the laws of the state of Delaware"
-                }
-              ],
-              "start_time": 1733145936.107245,
-              "end_time": 1733145936.702513,
-              "error": null,
+              "output": null,
+              "start_time": 1736142844.991379,
+              "end_time": 1736142845.764344,
+              "error": {
+                "message": "() Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\nCode: \nMessage: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter",
+                "type": "HttpResponseError"
+              },
               "children": [],
-              "node_name": "get_policys",
+              "node_name": "check_index_exist",
               "parent_id": "",
-              "id": "5758f355-c130-4f1b-9a3f-74461cf452ff",
-              "function": "list_policy_tool",
+              "id": "d81efac6-e641-41df-bd42-3d6c72b8afba",
+              "function": "my_python_tool",
               "system_metrics": {}
             }
           ],
           "system_metrics": {
-            "duration": 0.599278,
+            "duration": 0.976262,
             "prompt_tokens": 0,
             "completion_tokens": 0,
             "total_tokens": 0
           },
           "inputs": {
-            "configuration_action": 1
+            "configuration_action": 1,
+            "filename": "contract-for-the-purchase-of-goods-and-services.pdf",
+            "groups": "[\"2846190d-05dc-4048-90bc-7e236f34d84b\",\"62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38\",\"be8ca378-bc74-46c1-b922-e7f552486ede\"]"
           },
-          "output": {
-            "output": [
+          "output": null,
+          "error": {
+            "message": "Execution failure in 'check_index_exist': (HttpResponseError) () Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\nCode: \nMessage: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter",
+            "messageFormat": "Execution failure in '{node_name}'.",
+            "messageParameters": {
+              "node_name": "check_index_exist"
+            },
+            "referenceCode": "Tool/__pf_main__",
+            "code": "UserError",
+            "innerError": {
+              "code": "ToolExecutionError",
+              "innerError": null
+            },
+            "additionalInfo": [
               {
-                "title": "Limitation of Liability",
-                "instruction": "Seller will not be liable under this Contract for more than the Contract Price paid under this Contract during the 12 months before the claim arises."
-              },
-              {
-                "title": "Governing Law",
-                "instruction": "All contructs in the company must be governed by the laws of the state of Delaware"
+                "type": "ToolExecutionErrorDetails",
+                "info": {
+                  "type": "HttpResponseError",
+                  "message": "() Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\nCode: \nMessage: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter",
+                  "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\tracing\\_trace.py\", line 556, in wrapped\n    output = func(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\temp\\wordplugin1\\gbbwordplugin1 - v3\\PromptFlow\\configuration-flow\\check_index_exist.py\", line 27, in my_python_tool\n    for result in results:\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_paging.py\", line 54, in __next__\n    return next(self._page_iterator)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Roaming\\Python\\Python312\\site-packages\\azure\\core\\paging.py\", line 75, in __next__\n    self._response = self._get_next(self.continuation_token)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_paging.py\", line 125, in _get_next_cb\n    return self._client.documents.search_post(search_request=self._initial_query.request, **self._kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Roaming\\Python\\Python312\\site-packages\\azure\\core\\tracing\\decorator.py\", line 78, in wrapper_use_tracer\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_generated\\operations\\_documents_operations.py\", line 778, in search_post\n    raise HttpResponseError(response=response, model=error)\nazure.core.exceptions.HttpResponseError: () Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\nCode: \nMessage: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\n",
+                  "filename": "C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_generated\\operations\\_documents_operations.py",
+                  "lineno": 778,
+                  "name": "search_post"
+                }
               }
-            ]
-          },
-          "error": null
+            ],
+            "debugInfo": {
+              "type": "ToolExecutionError",
+              "message": "Execution failure in 'check_index_exist': (HttpResponseError) () Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\nCode: \nMessage: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter",
+              "stackTrace": "\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\flow_executor.py\", line 1034, in _exec\n    output, aggregation_inputs = self._exec_inner_with_trace(\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\flow_executor.py\", line 937, in _exec_inner_with_trace\n    output, nodes_outputs = self._traverse_nodes(inputs, context)\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\flow_executor.py\", line 1215, in _traverse_nodes\n    nodes_outputs, bypassed_nodes = self._submit_to_scheduler(context, inputs, batch_nodes)\n                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\flow_executor.py\", line 1270, in _submit_to_scheduler\n    return scheduler.execute(self._line_timeout_sec)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 131, in execute\n    raise e\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 113, in execute\n    self._dag_manager.complete_nodes(self._collect_outputs(completed_futures))\n                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 160, in _collect_outputs\n    each_node_result = each_future.result()\n                       ^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\concurrent\\futures\\_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\concurrent\\futures\\_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\concurrent\\futures\\thread.py\", line 58, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\executor\\_flow_nodes_scheduler.py\", line 181, in _exec_single_node_in_thread\n    result = context.invoke_tool(node, f, kwargs=kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 90, in invoke_tool\n    result = self._invoke_tool_inner(node, f, kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 206, in _invoke_tool_inner\n    raise ToolExecutionError(node_name=node_name, module=module) from e\n",
+              "innerException": {
+                "type": "HttpResponseError",
+                "message": "() Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter\nCode: \nMessage: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.\r\nParameter name: $filter",
+                "stackTrace": "Traceback (most recent call last):\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\_core\\flow_execution_context.py\", line 182, in _invoke_tool_inner\n    return f(**kwargs)\n           ^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\promptflow\\tracing\\_trace.py\", line 556, in wrapped\n    output = func(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\temp\\wordplugin1\\gbbwordplugin1 - v3\\PromptFlow\\configuration-flow\\check_index_exist.py\", line 27, in my_python_tool\n    for result in results:\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_paging.py\", line 54, in __next__\n    return next(self._page_iterator)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Roaming\\Python\\Python312\\site-packages\\azure\\core\\paging.py\", line 75, in __next__\n    self._response = self._get_next(self.continuation_token)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_paging.py\", line 125, in _get_next_cb\n    return self._client.documents.search_post(search_request=self._initial_query.request, **self._kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Roaming\\Python\\Python312\\site-packages\\azure\\core\\tracing\\decorator.py\", line 78, in wrapper_use_tracer\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\liorarmiev\\AppData\\Local\\miniconda3\\Lib\\site-packages\\azure\\search\\documents\\_generated\\operations\\_documents_operations.py\", line 778, in search_post\n    raise HttpResponseError(response=response, model=error)\n",
+                "innerException": null
+              }
+            }
+          }
         }
       ],
       "name": "",
       "description": "",
       "tags": null,
       "system_metrics": {
-        "duration": 0.599278,
+        "duration": 0.976262,
         "prompt_tokens": 0,
         "completion_tokens": 0,
         "total_tokens": 0
       },
-      "result": {
-        "output": [
-          {
-            "title": "Limitation of Liability",
-            "instruction": "Seller will not be liable under this Contract for more than the Contract Price paid under this Contract during the 12 months before the claim arises."
-          },
-          {
-            "title": "Governing Law",
-            "instruction": "All contructs in the company must be governed by the laws of the state of Delaware"
-          }
-        ]
-      },
+      "result": null,
       "upload_metrics": false,
-      "otel_trace_id": "0xc43b26196a8c9c6dd64a4d9ca10f9ef1",
+      "otel_trace_id": "0x7f4cae22df50a6af03a3c77ce5b2eb43",
       "message_format": "basic"
     }
   ],
   "node_runs": [
     {
       "node": "get_policys",
-      "flow_run_id": "6025b187-856a-4716-8827-14c2d882b52d",
-      "run_id": "6025b187-856a-4716-8827-14c2d882b52d_get_policys_0",
-      "status": "Completed",
-      "inputs": {
-        "searchconnection": "azuresearch"
-      },
-      "output": [
-        {
-          "title": "Limitation of Liability",
-          "instruction": "Seller will not be liable under this Contract for more than the Contract Price paid under this Contract during the 12 months before the claim arises."
-        },
-        {
-          "title": "Governing Law",
-          "instruction": "All contructs in the company must be governed by the laws of the state of Delaware"
-        }
-      ],
+      "flow_run_id": "d2f588f6-a814-44f8-ad2c-59840122415e",
+      "run_id": "d2f588f6-a814-44f8-ad2c-59840122415e_get_policys_0",
+      "status": "Bypassed",
+      "inputs": null,
+      "output": null,
       "metrics": null,
       "error": null,
-      "parent_run_id": "6025b187-856a-4716-8827-14c2d882b52d_0",
-      "start_time": "2024-12-02T15:25:36.107245Z",
-      "end_time": "2024-12-02T15:25:36.702513Z",
+      "parent_run_id": "d2f588f6-a814-44f8-ad2c-59840122415e_0",
+      "start_time": "2025-01-06T07:54:04.990366Z",
+      "end_time": "2025-01-06T07:54:04.990366Z",
       "index": 0,
+      "api_calls": [],
+      "cached_run_id": null,
+      "cached_flow_run_id": null,
+      "logs": null,
+      "system_metrics": null,
+      "result": null,
+      "message_format": "basic"
+    },
+    {
+      "node": "check_index_exist",
+      "flow_run_id": "434139d4-e276-4fe9-9358-223078361ae5",
+      "run_id": "434139d4-e276-4fe9-9358-223078361ae5_check_index_exist_6a21d91f-af6c-4a3b-891f-226cc702c54d",
+      "status": "Completed",
+      "inputs": {
+        "searchconnection": "ally",
+        "filename": "contract-for-the-purchase-of-goods-and-services.pdf",
+        "groups": [
+          "2846190d-05dc-4048-90bc-7e236f34d84b",
+          "62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38",
+          "be8ca378-bc74-46c1-b922-e7f552486ede"
+        ]
+      },
+      "output": null,
+      "metrics": null,
+      "error": null,
+      "parent_run_id": "434139d4-e276-4fe9-9358-223078361ae5",
+      "start_time": "2025-01-06T08:04:09.492638Z",
+      "end_time": "2025-01-06T08:04:10.230346Z",
+      "index": null,
       "api_calls": [
         {
-          "name": "list_policy_tool",
+          "name": "my_python_tool",
           "type": "Function",
           "inputs": {
-            "searchconnection": "azuresearch"
+            "searchconnection": "ally",
+            "filename": "contract-for-the-purchase-of-goods-and-services.pdf",
+            "groups": [
+              "2846190d-05dc-4048-90bc-7e236f34d84b",
+              "62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38",
+              "be8ca378-bc74-46c1-b922-e7f552486ede"
+            ]
           },
-          "output": [
-            {
-              "title": "Limitation of Liability",
-              "instruction": "Seller will not be liable under this Contract for more than the Contract Price paid under this Contract during the 12 months before the claim arises."
-            },
-            {
-              "title": "Governing Law",
-              "instruction": "All contructs in the company must be governed by the laws of the state of Delaware"
-            }
-          ],
-          "start_time": 1733145936.107245,
-          "end_time": 1733145936.702513,
+          "output": null,
+          "start_time": 1736143449.492638,
+          "end_time": 1736143450.228244,
           "error": null,
           "children": [],
-          "node_name": "get_policys",
+          "node_name": "check_index_exist",
           "parent_id": "",
-          "id": "5758f355-c130-4f1b-9a3f-74461cf452ff",
-          "function": "list_policy_tool",
+          "id": "c6bc86b8-7f9c-49de-b1ed-dd1a2ff32cc0",
+          "function": "my_python_tool",
           "system_metrics": {}
         }
       ],
@@ -173,18 +227,9 @@
         "stderr": ""
       },
       "system_metrics": {
-        "duration": 0.595268
+        "duration": 0.737708
       },
-      "result": [
-        {
-          "title": "Limitation of Liability",
-          "instruction": "Seller will not be liable under this Contract for more than the Contract Price paid under this Contract during the 12 months before the claim arises."
-        },
-        {
-          "title": "Governing Law",
-          "instruction": "All contructs in the company must be governed by the laws of the state of Delaware"
-        }
-      ],
+      "result": null,
       "message_format": "basic"
     }
   ]

@@ -12,6 +12,28 @@
       },
       "source": "get_policys.py",
       "function": "list_policy_tool"
+    },
+    "check_index_exist.py": {
+      "type": "python",
+      "inputs": {
+        "filename": {
+          "type": [
+            "string"
+          ]
+        },
+        "groups": {
+          "type": [
+            "object"
+          ]
+        },
+        "searchconnection": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "check_index_exist.py",
+      "function": "my_python_tool"
     }
   }
 }
