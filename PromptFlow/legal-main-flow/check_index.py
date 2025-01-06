@@ -3,10 +3,6 @@ from promptflow import tool
 from promptflow.connections import CustomConnection
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
-
-# The inputs section will change based on the arguments of the tool function, after you save the code
-# Adding type to arguments and return value will help the system show the types properly
-# Please update the function name/signature per need
 @tool
 def my_python_tool(filename: str, groups: object, searchconnection:CustomConnection) -> str:
     search_endpoint = searchconnection.search_endpoint
@@ -23,9 +19,6 @@ def my_python_tool(filename: str, groups: object, searchconnection:CustomConnect
         include_total_count=True  # Include the total count in the results
     )
     count = results.get_count()  # Get the total count of matching documents
-    with open("output.txt", "w") as text_file:
-        text = "The count of documents with filename {} is {}".format(filename, count)
-        text_file.write(text)
     if count:
         return True
     else:

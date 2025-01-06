@@ -9,17 +9,6 @@ import logging
 def my_python_tool(input1: dict, input2: dict, input3: dict, input4: dict, input5: str) -> dict:
     #check witch input is not null and return it
     
-    # create a write to file function
-        #     with open("output.txt", "w") as text_file:
-        # text_file.write("Hello, World!")
-    
-    def write_to_file(input):
-        with open("output.txt", "w") as text_file:
-            text_file.write(str(input))
-
-    text = "out1 is {} out2 is {} out3 is {} out4 is {} out5 is {}".format(input1, input2, input3, input4, input5)
-    write_to_file(text)
-
     if input1:
         return input1
     elif input2:
