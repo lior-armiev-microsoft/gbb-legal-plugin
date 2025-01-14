@@ -83,8 +83,7 @@ async function processSelectedText(text, endpoint, language) {
 
   // Save Style and formatting of the selected text
   saveSelectedText();
-
-  console.log("selected text: ", text);
+  let groups =  JSON.parse(localStorage.getItem('groups'));
   const response = await fetch(endpoint, {  
       method: 'POST',  
       headers: {  
@@ -93,7 +92,7 @@ async function processSelectedText(text, endpoint, language) {
       body: JSON.stringify({  
           query_type: 2,  
           question: text,  
-          group: localStorage.getItem('groups'),  
+          group: groups,  
           language: language 
       })  
   });  

@@ -38,7 +38,7 @@ export async function ask() {
   try {  
       // Execute Word API call  
       await Word.run(async (context) => {  
-          const response = await fetchData(pfendpoint, query, language);  
+          const response = await fetchData(pfendpoint, query, language, JSON.parse(localStorage.getItem('groups')));  
           const data = await response.json();  
           displaySearchResults(data.answer);  
       });  
@@ -57,7 +57,14 @@ function createSpinner() {
 }  
 
 // Fetch data from API  
-async function fetchData(endpoint, query, language) {  
+async function fetchData(endpoint, query, language, groups) {  
+  console.log("Entered fetchData function with the next parameters: ");
+  console.log("Endpoint: ", endpoint);
+  console.log("Query: ", query);
+  console.log("Language: ", language);
+  console.log("Groups: ", groups);
+  console.log("Groups type: ", typeof(groups));
+  
   return await fetch(endpoint, {  
       method: 'POST',  
       headers: {  
@@ -66,7 +73,8 @@ async function fetchData(endpoint, query, language) {
       body: JSON.stringify({  
           query_type: 3,
           question: query,  
-          language: language 
+          language: language,
+          groups: groups
       })  
   });  
 }  

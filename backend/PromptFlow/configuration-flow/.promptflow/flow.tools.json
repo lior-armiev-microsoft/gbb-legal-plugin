@@ -21,7 +21,7 @@
             "string"
           ]
         },
-        "groups": {
+        "user_config": {
           "type": [
             "object"
           ]
@@ -34,6 +34,23 @@
       },
       "source": "check_index_exist.py",
       "function": "my_python_tool"
+    },
+    "chunk_document.py": {
+      "type": "python",
+      "inputs": {
+        "filename": {
+          "type": [
+            "string"
+          ]
+        },
+        "user_config": {
+          "type": [
+            "object"
+          ]
+        }
+      },
+      "source": "chunk_document.py",
+      "function": "chunk_python_tool"
     }
   }
 }

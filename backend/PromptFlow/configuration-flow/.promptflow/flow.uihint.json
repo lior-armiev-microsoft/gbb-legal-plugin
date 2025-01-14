@@ -1,0 +1,21 @@
+{
+  "nodes": {
+    "check_index_exist": {
+      "variant_0": {
+        "inputs": {
+          "filename": [],
+          "groups": [],
+          "user_config": []
+        }
+      }
+    },
+    "chunk_document": {
+      "variant_0": {
+        "inputs": {
+          "filename": [],
+          "user_config": []
+        }
+      }
+    }
+  }
+}

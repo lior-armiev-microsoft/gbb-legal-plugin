@@ -9,9 +9,7 @@ inputs:
   question:
     type: string
     is_chat_input: true
-    default: "(a)\tThe Contract shall be governed by and construed in accordance
-      with the laws of Singapore, without reference to its conflict of laws
-      rules. "
+    default: what is the governing law in this contract?
   query_type:
     type: int
     default: 99
@@ -26,7 +24,7 @@ inputs:
     default: English
   filename:
     type: string
-    default: contract-for-the-purchase-of-goods-and-services.pdf
+    default: contract-for-the-purchase-of-goods-and-services.docx
 outputs:
   answer:
     type: string

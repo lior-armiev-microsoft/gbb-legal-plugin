@@ -110,10 +110,12 @@ def python_tool(query: str, search_result_list: list, ally: CustomConnection, la
             openai_sentiment_response_post_text = openai_response.choices[0].message.parsed  
             response = json.loads(openai_sentiment_response_post_text.model_dump_json(indent=2))
             print(response)
+            print(type(response))
         except Exception as e:  
             print(f"Error converting to JSON sentiment from OpenAI: {e}")
             return  
 
-
+        # print the response type
+        print(type(response))
         return response
     

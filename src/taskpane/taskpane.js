@@ -233,7 +233,9 @@ async function getOpenAIResponseDemo(pfuri)
           localStorage.setItem('profile', profile);
           
           //localStorage.setItem('groups',['2846190d-05dc-4048-90bc-7e236f34d84b','62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38','be8ca378-bc74-46c1-b922-e7f552486ede']);
-          localStorage.setItem('groups', JSON.stringify(['2846190d-05dc-4048-90bc-7e236f34d84b','62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38','be8ca378-bc74-46c1-b922-e7f552486ede']));
+          localStorage.setItem('groups', JSON.stringify(['22a229bd-c7a2-49d0-9eaa-e1fc888daac6','2846190d-05dc-4048-90bc-7e236f34d84b','62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38','be8ca378-bc74-46c1-b922-e7f552486ede']));
+
+          //localStorage.setItem('groups', JSON.stringify(['22a229bd-c7a2-49d0-9eaa-e1fc888daac6']));
 
           console.log("Profile: ", JSON.parse(localStorage.getItem('profile')));
           console.log("Groups: ", localStorage.getItem('groups'));

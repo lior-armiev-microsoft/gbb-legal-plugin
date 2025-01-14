@@ -151,6 +151,16 @@
         "panel": "dedicated"
       },
       "problemMatcher": []
+    },
+    {
+      "type": "func",
+      "label": "func: host start",
+      "command": "host start",
+      "problemMatcher": "$func-python-watch",
+      "isBackground": true,
+      "options": {
+        "cwd": "${workspaceFolder}/backend\\Functions\\Index-Skil"
+      }
     }
   ]
 }

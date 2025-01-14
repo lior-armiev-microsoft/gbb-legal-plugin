@@ -33,7 +33,7 @@ export async function document_summary() {
         // const properties = context.document.properties; extract file properties. may be usfull later
         // properties.load()
         // await context.sync();
-              
+        console.log(pfendpoint);
               // Make the API call to get the data  ---------- Remember to remove this line ---------------
         const response = await fetch(pfendpoint, {
             method: 'POST',

@@ -1,8 +1,4 @@
 node_modules
-src\config\config.json
-src/config/config.json
 doc
-files/*.ps
+files/*.ps1
 files/*.py
-
-
