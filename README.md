@@ -49,6 +49,10 @@ To install and run the plugin locally, ensure you have the following:
 3. Navigate to the solution directory.  
 4. Run `npm install` to install dependencies.  
 5. Start the plugin with `npm start`.  
+
+>[!NOTE]
+> Next Steps are for the backend server (PromptFlow), there are 2 options, runing local PF or runing Docker file, the Docker is recomanded for fast Demo, the local is recomanded for development and debug
+
 6. Go to the PrompFlow  folder
 7. If NOT using Docker with PromptFlow you will need to create 1 local connector in PF
 this can be done using PF Extention, please install PromptFlow Extention for VS Code,
@@ -88,7 +92,7 @@ secrets:
 
 8. Run `pf flow serve --source . --port 8083 --host localhost`
 9. This will load a local web on port `8083` and can be used by the Plugin
-10. /cofig/cofig.json file need to hold the endpoint of the PromptFlow endpoint under the `prompt-flow-endpoint`
+10. ***/cofig/cofig.json*** file need to hold the endpoint of the PromptFlow endpoint under the `prompt-flow-endpoint`
     for exmaple `"prompt-flow-endpoint" : "http://localhost:8083/score"` for local run of PF
 
 
@@ -136,7 +140,6 @@ secrets:
         | CompliantCollection | StringCollection | List of relevan Policies
         | NonCompliantCollection | StringCollection | List of relevan Policies
 
-
   
 ## User Interaction  
   
@@ -152,26 +155,23 @@ Working with the Docker file steps:
 3. Run the container with port `8083` and the next paramiters:
 
 - configs:
-  - openai_endpoint: ${env:ALLY_OPENAI_ENDPOINT}
-  - search_document_index: ${env:ALLY_SEARCH_DOCUMENT_INDEX}
-  - search_policy_index: ${env:ALLY_SEARCH_POLICY_INDEX}
-  - openai_model_deployment: ${env:ALLY_OPENAI_MODEL_DEPLOYMENT}
-  - openai_embedding_deployment: ${env:ALLY_OPENAI_EMBEDDING_DEPLOYMENT}
-  - openai_api_version: ${env:ALLY_OPENAI_API_VERSION}
-  - search_endpoint: ${env:ALLY_SEARCH_ENDPOINT}
-- secrets:
-  - openai_key: ${env:ALLY_OPENAI_KEY}
-  - search_key: ${env:ALLY_SEARCH_KEY}
+  - "ALLY_OPENAI_ENDPOINT=https://xxxxxx.openai.azure.com/",
+  - "ALLY_SEARCH_DOCUMENT_INDEX=legal-documents",
+  - "ALLY_SEARCH_POLICY_INDEX=legal-instructions",
+  - "ALLY_OPENAI_MODEL_DEPLOYMENT=gpt4o",
+  - "ALLY_OPENAI_EMBEDDING_DEPLOYMENT=ada002",
+  - "ALLY_OPENAI_API_VERSION=2024-08-01-preview",
+  - "ALLY_SEARCH_ENDPOINT=https://yyyyy.search.windows.net",
 
-4. Run the Word Plugin
-5. Navigate to the solution directory.  
-6. Run `npm install` to install dependencies.  
-7. Start the plugin with `npm start`. 
-  
-## Importing into Azure AI Studio  
-  
-Import the PF Yaml file from the PromptFlow folder and configure the necessary connections.
-  
+- secrets:
+  - "ALLY_OPENAI_KEY=xxxxxxx",
+  - "ALLY_SEARCH_KEY=yyyyyyy",
+
+4. Run the Word Plugin: 
+- 4.1. Navigate to the solution directory.  
+- 4.2. Run `npm install` to install dependencies.  
+- 4.3. Start the plugin with `npm start`. 
+    
 ## Intellectual Property and Licensing  
   
 This plugin is free to use and modify by anyone. The GitHub repository is also free to use and change.  
