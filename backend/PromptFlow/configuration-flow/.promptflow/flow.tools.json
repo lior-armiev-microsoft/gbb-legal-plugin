@@ -1,0 +1,56 @@
+{
+  "package": {},
+  "code": {
+    "get_policys.py": {
+      "type": "python",
+      "inputs": {
+        "searchconnection": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "get_policys.py",
+      "function": "list_policy_tool"
+    },
+    "check_index_exist.py": {
+      "type": "python",
+      "inputs": {
+        "filename": {
+          "type": [
+            "string"
+          ]
+        },
+        "user_config": {
+          "type": [
+            "object"
+          ]
+        },
+        "searchconnection": {
+          "type": [
+            "CustomConnection"
+          ]
+        }
+      },
+      "source": "check_index_exist.py",
+      "function": "my_python_tool"
+    },
+    "chunk_document.py": {
+      "type": "python",
+      "inputs": {
+        "filename": {
+          "type": [
+            "string"
+          ]
+        },
+        "user_config": {
+          "type": [
+            "object"
+          ]
+        }
+      },
+      "source": "chunk_document.py",
+      "function": "chunk_python_tool"
+    }
+  }
+}

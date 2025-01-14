@@ -1,0 +1,53 @@
+2025-01-06 09:54:04 +0200   13460 execution.flow     INFO     Start executing nodes in thread pool mode.
+2025-01-06 09:54:04 +0200   13460 execution.flow     INFO     Start to run 2 nodes with concurrency level 16.
+2025-01-06 09:54:04 +0200   13460 execution.flow     INFO     The node 'get_policys' will be bypassed because the activate condition is not met, i.e. '1' is not equal to '2'.
+2025-01-06 09:54:04 +0200   13460 execution.flow     INFO     Bypassing node get_policys. node run id: d2f588f6-a814-44f8-ad2c-59840122415e_get_policys_0
+2025-01-06 09:54:04 +0200   13460 execution.flow     INFO     Executing node check_index_exist. node run id: d2f588f6-a814-44f8-ad2c-59840122415e_check_index_exist_0
+2025-01-06 09:54:05 +0200   13460 execution          ERROR    Node check_index_exist in line 0 failed. Exception: Execution failure in 'check_index_exist': (HttpResponseError) () Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.
+Parameter name: $filter
+Code: 
+Message: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.
+Parameter name: $filter.
+Traceback (most recent call last):
+  File "C:\Users\liorarmiev\AppData\Local\miniconda3\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 182, in _invoke_tool_inner
+    return f(**kwargs)
+           ^^^^^^^^^^^
+  File "C:\Users\liorarmiev\AppData\Local\miniconda3\Lib\site-packages\promptflow\tracing\_trace.py", line 556, in wrapped
+    output = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\temp\wordplugin1\gbbwordplugin1 - v3\PromptFlow\configuration-flow\check_index_exist.py", line 27, in my_python_tool
+    for result in results:
+  File "C:\Users\liorarmiev\AppData\Local\miniconda3\Lib\site-packages\azure\search\documents\_paging.py", line 54, in __next__
+    return next(self._page_iterator)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\liorarmiev\AppData\Roaming\Python\Python312\site-packages\azure\core\paging.py", line 75, in __next__
+    self._response = self._get_next(self.continuation_token)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\liorarmiev\AppData\Local\miniconda3\Lib\site-packages\azure\search\documents\_paging.py", line 125, in _get_next_cb
+    return self._client.documents.search_post(search_request=self._initial_query.request, **self._kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\liorarmiev\AppData\Roaming\Python\Python312\site-packages\azure\core\tracing\decorator.py", line 78, in wrapper_use_tracer
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\liorarmiev\AppData\Local\miniconda3\Lib\site-packages\azure\search\documents\_generated\operations\_documents_operations.py", line 778, in search_post
+    raise HttpResponseError(response=response, model=error)
+azure.core.exceptions.HttpResponseError: () Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.
+Parameter name: $filter
+Code: 
+Message: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.
+Parameter name: $filter
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\liorarmiev\AppData\Local\miniconda3\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 90, in invoke_tool
+    result = self._invoke_tool_inner(node, f, kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\liorarmiev\AppData\Local\miniconda3\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 206, in _invoke_tool_inner
+    raise ToolExecutionError(node_name=node_name, module=module) from e
+promptflow._core._errors.ToolExecutionError: Execution failure in 'check_index_exist': (HttpResponseError) () Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.
+Parameter name: $filter
+Code: 
+Message: Invalid expression: Could not find a property named 'adgroup' on type 'search.document'.
+Parameter name: $filter
+2025-01-06 09:54:05 +0200   13460 execution.flow     ERROR    Flow execution has failed. Cancelling all running nodes: check_index_exist.

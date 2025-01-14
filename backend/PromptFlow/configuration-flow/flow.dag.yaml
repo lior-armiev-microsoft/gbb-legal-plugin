@@ -1,0 +1,31 @@
+inputs:
+  configuration_action:
+    type: int
+    default: 1
+  filename:
+    type: string
+    default: contract-for-the-purchase-of-goods-and-services.pdf
+  user_config:
+    type: object
+outputs:
+  output:
+    type: string
+    reference: ${check_index_exist.output}
+nodes:
+- name: check_index_exist
+  type: python
+  source:
+    type: code
+    path: check_index_exist.py
+  inputs:
+    searchconnection: ally
+    filename: ${inputs.filename}
+    user_config: ${inputs.user_config}
+- name: chunk_document
+  type: python
+  source:
+    type: code
+    path: chunk_document.py
+  inputs:
+    filename: ${inputs.filename}
+    user_config: ${inputs.user_config}
