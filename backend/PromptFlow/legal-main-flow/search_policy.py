@@ -5,7 +5,7 @@ from azure.search.documents import SearchClient
 from azure.search.documents.models import VectorizedQuery
 
 @tool
-def list_policy_tool(query: str, embeding:list, searchconnection: CustomConnection, groups: list) -> object:
+def list_policy_tool(query: str, embeding:list, searchconnection: CustomConnection, groups: str) -> object:
     search_endpoint = searchconnection.search_endpoint
     search_index = searchconnection.search_policy_index
     search_key = searchconnection.search_key    
@@ -13,7 +13,7 @@ def list_policy_tool(query: str, embeding:list, searchconnection: CustomConnecti
     vector_query = VectorizedQuery(king="vector", vector=embeding, k_nearest_neighbors=1, fields="embeding")     
 
     search_client = SearchClient(search_endpoint, search_index, AzureKeyCredential(search_key))
-    group_filter = "adgroup/any(t: search.in(t, '{}'))".format(",".join(groups))
+    group_filter = "adgroup/any(t: search.in(t, '{}'))".format(groups)
     results = search_client.search(
         search_text=query,  # Use '*' to match all documents
         filter=group_filter, 

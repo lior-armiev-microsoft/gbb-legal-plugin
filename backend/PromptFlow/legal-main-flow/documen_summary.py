@@ -18,7 +18,7 @@ class SummaryResponse(BaseModel):
     PolicyItems: list[PolicyItem]
 
 @tool
-def python_tool(language:str, input_text: str, policy_list: list, ally: CustomConnection) -> object:
+def python_tool(language:str, input_text: str, policy_list: object, ally: CustomConnection):
     
     if len(policy_list) == 0:
         return {"warning": "No policy items found."}
@@ -80,10 +80,11 @@ The policy items provided in the list are:''' + json.dumps(policy_list, indent=2
     )  
     try:  
         openai_sentiment_response_post_text = openai_response.choices[0].message.parsed  
+        print(f"JSON string: {openai_sentiment_response_post_text}")
         response = json.loads(openai_sentiment_response_post_text.model_dump_json(indent=2))
-        #print(response)
+        print(response)
     except Exception as e:  
-        #print(f"Error converting to JSON sentiment from OpenAI: {e}")
+        print(f"Error converting to JSON sentiment from OpenAI: {e}")
         return  
 
     return response

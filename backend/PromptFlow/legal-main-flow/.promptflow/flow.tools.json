@@ -184,7 +184,7 @@
         },
         "policy_list": {
           "type": [
-            "list"
+            "object"
           ]
         },
         "ally": {
@@ -216,7 +216,7 @@
         },
         "groups": {
           "type": [
-            "list"
+            "string"
           ]
         }
       },
@@ -297,7 +297,7 @@
         },
         "groups": {
           "type": [
-            "list"
+            "string"
           ]
         }
       },
@@ -358,7 +358,7 @@
         },
         "groups": {
           "type": [
-            "object"
+            "string"
           ]
         },
         "searchconnection": {
