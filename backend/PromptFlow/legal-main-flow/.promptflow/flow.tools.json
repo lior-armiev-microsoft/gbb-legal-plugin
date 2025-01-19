@@ -216,7 +216,7 @@
         },
         "groups": {
           "type": [
-            "string"
+            "list"
           ]
         }
       },
