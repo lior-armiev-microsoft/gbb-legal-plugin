@@ -1,15 +1,44 @@
 
-# Ally - Office 365 Legal Plugin  
+# Ally - AI Contract Assistant
 
-## Overview  
-  
-The Office 365 Legal Plugin is an innovative solution meticulously crafted to transform the landscape of contract management for legal professionals. This sophisticated tool harnesses the power of advanced artificial intelligence to streamline the intricate processes of document summarization, comprehensive review, policy compliance verification, and the application of corrections and redlining. By integrating seamlessly with Microsoft Word within the Office 365 suite, the plugin provides a native and intuitive user experience.
+### Solution Overview 
 
-At the heart of this plugin is the robust infrastructure of Azure, coupled with Azure AI’s cutting-edge capabilities, delivering an unparalleled end-to-end contract management solution. This integration not only enhances the speed and accuracy of contract processing but also ensures that legal professionals can focus on more strategic aspects of their work.
+__Ally – AI Contract Assistant__ is a contract analysis and review tool featuring a Word plugin that uses Azure OpenAI Service for analyzing contracts, real-time Q&A, and auto-markup based on legal policies. It helps legal professionals converse naturally, verify clauses, identify risks, and ensure consistency in reviews, saving time and boosting efficiency. 
 
-The Office 365 Legal Plugin is designed with flexibility and scalability in mind. Its open-source code base allows organizations to tailor the solution to their unique requirements, offering a customizable platform that can evolve alongside changing business needs. Whether deployed in a local environment or within a larger cloud-based infrastructure using Docker and Azure Kubernetes Service (AKS), this plugin adapts to diverse IT architectures, ensuring optimal performance and reliability.
+__Ally – AI Contract Assistant__  is an innovative solution meticulously crafted to transform the landscape of contract analysis and review for legal professionals. This sophisticated tool harnesses the power of advanced artificial intelligence to streamline the intricate processes of document summarization, comprehensive contract analysis and review, legal policy compliance verification, and the application of corrections and redlining. By integrating seamlessly with Microsoft Word within the Office 365 suite, the plugin provides a native and intuitive user experience. 
 
-By leveraging this plugin, legal teams can significantly reduce the time spent on manual tasks, thereby increasing overall productivity and enabling a sharper focus on delivering value to clients. Embrace the future of legal technology with a solution that combines Microsoft’s best-of-breed offerings to redefine efficiency and efficacy in legal contract management.
+At the heart of this plugin is the robust infrastructure of Azure, coupled with Azure AI’s cutting-edge capabilities, delivering an unparalleled end-to-end contract analysis and review solution. This integration not only enhances the speed and accuracy of contract processing but also ensures that legal professionals can focus on more strategic aspects of their work. 
+
+__Ally – AI Contract Assistant__  is designed with flexibility and scalability in mind. Its open-source code base allows organizations to tailor the solution to their unique requirements, offering a customizable platform that can evolve alongside changing business needs. Whether deployed in a local environment or within a larger cloud-based infrastructure using Docker and Azure Kubernetes Service (AKS), this plugin adapts to diverse IT architectures, ensuring optimal performance and reliability. 
+
+By leveraging this plugin, legal professionals can significantly reduce the time spent on manual tasks, thereby increasing overall productivity and enabling a sharper focus on delivering value to clients. Embrace the future of legal technology with a solution that combines Microsoft’s best-of-breed offerings to redefine efficiency and efficacy in legal contract analysis and review. 
+
+### Key Features 
+
+- Efficient Contract Analysis & Review: Streamline the process of contract review with AI-driven summarization and analysis. 
+- Policy and Compliance Checks: Ensure compliance with company legal policies through integrated policy checks. 
+- Customizable Solution: Modify and extend functionalities with access to the open-source code. 
+- Flexible Deployment Options: Deploy locally or use Docker with AKS, or integrate with Azure AI Foundry and PromptFlow. 
+
+### Business Impact: 
+
+Legal professionals spend about 50% of their time reviewing repetitive contracts, which is a major source of frustration and reduces their ability to focus on strategic tasks. This manual workload negatively impacts employee morale, leading to burnout, high turnover rates and inefficiencies in the contract review process. ​ 
+
+Enabled by the Azure OpenAI Service, Ally – AI Contract Assistant offers significant business impact through contract analysis and review, saving time, and enhancing the delivery of legal services.  
+
+### Industry​
+
+ - Legal / Professional Services​ 
+
+### Personas​ 
+
+- Legal counsel​ 
+- Contract management​ 
+- Legal operations​ 
+- Procurement​ 
+- Risk management and compliance​ 
+- Regulators​ 
+- Professional Services Firms​ 
   
 ## Key Features  
   
@@ -140,11 +169,7 @@ secrets:
         | CompliantCollection | StringCollection | List of relevan Policies
         | NonCompliantCollection | StringCollection | List of relevan Policies
 
-  
-## User Interaction  
-  
-- (A video will be provided to demonstrate user interaction and main workflows.)
-  
+    
 ## Deployment to AKS or Docker  
   
 The solution includes a Docker folder within the PromptFlow directory for deployment. After deployment in the PromptFlow connector, update the endpoint information. Ensure connection parameters for OpenAI and Azure Search are set correctly.  
@@ -176,14 +201,16 @@ Working with the Docker file steps:
   
 This plugin is free to use and modify by anyone. The GitHub repository is also free to use and change.  
   
+## Team behind Ally – AI Contract Assistant 
+
+- **Esther Dediashvili** – Senior Solution Specialist – AI Global Black Belt, EMEA    
+- **Lior Armiev** – Senior Technical Specialist​ – AI Global Black Belt, EMEA    
+- **Andrew Mackay** – AI Director – Global Black Belts, CEMA 
+
 ## Contributing  
   
-We welcome contributions from the community. Feel free to create a pull request or leave comments. I will review all contributions.  
+We welcome contributions from the community. Feel free to create a pull request or leave comments. All contributions will be reviewed. 
   
 ## Reporting Issues and Contributions  
   
 Please email any issues or contributions to [liorarmiev@microsoft.com](mailto:liorarmiev@microsoft.com).  
-  
-## Additional Resources  
-  
-- (Additional documentation, tutorials, or demos will be linked here. TBD)  
