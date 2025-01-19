@@ -4,7 +4,7 @@ from promptflow.connections import CustomConnection
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
 @tool
-def my_python_tool(filename: str, groups: object, searchconnection:CustomConnection) -> str:
+def my_python_tool(filename: str, groups: str, searchconnection:CustomConnection) -> str:
     search_endpoint = searchconnection.search_endpoint
     search_index = searchconnection.search_document_index
     search_key = searchconnection.search_key    

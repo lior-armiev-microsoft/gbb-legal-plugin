@@ -4,7 +4,7 @@ from openai import AzureOpenAI
 from promptflow.connections import CustomConnection
 
 @tool
-def my_python_tool(input: str, ally: CustomConnection,) -> str:
+def my_python_tool(input: str, ally: CustomConnection,) -> object:
     client = AzureOpenAI(  
         azure_endpoint=ally.openai_endpoint,  
         api_key=ally.openai_key,  

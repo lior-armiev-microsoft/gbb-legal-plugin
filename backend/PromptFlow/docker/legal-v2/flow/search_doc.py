@@ -5,7 +5,7 @@ from azure.search.documents import SearchClient
 from azure.search.documents.models import VectorizedQuery
 
 @tool
-def search_doc_tool(query: str, embedinginput: list, searchconnection: CustomConnection, filename: str, groups: list) -> object:
+def search_doc_tool(query: str, embedinginput: list, searchconnection: CustomConnection, filename: str, groups: str) -> object:
     search_endpoint = searchconnection.search_endpoint
     search_index = searchconnection.search_document_index
     search_key = searchconnection.search_key
@@ -14,9 +14,11 @@ def search_doc_tool(query: str, embedinginput: list, searchconnection: CustomCon
 
     search_client = SearchClient(search_endpoint, search_index, AzureKeyCredential(search_key))
     file_filter = "filename eq '{}'".format(filename)
-    group_filter = "group/any(t: search.in(t, '{}'))".format(",".join(groups))
+    # Add the group filter only if SSO enabled
+    #group_filter = "group/any(t: search.in(t, '{}'))".format(groups)
     # combine the filter
-    filter = "({}) and ({})".format(file_filter, group_filter)
+    #filter = "({}) and ({})".format(file_filter, group_filter)
+    filter = "({})".format(file_filter)   # Note this filter does no take the group into account
 
     results = search_client.search(
         search_text=query,  # Use the text query

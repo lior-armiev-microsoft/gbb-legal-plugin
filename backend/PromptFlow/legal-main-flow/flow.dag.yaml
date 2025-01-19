@@ -9,12 +9,10 @@ inputs:
   question:
     type: string
     is_chat_input: true
-    default: "(a)\tThe Contract shall be governed by and construed in accordance
-      with the laws of Singapore, without reference to its conflict of laws
-      rules. "
+    default: what is the governing law in the contruct?
   query_type:
     type: int
-    default: 2
+    default: 1
   group:
     type: string
     default: 2846190d-05dc-4048-90bc-7e236f34d84b,62edbd7b-8d46-4d2c-a5a1-da5b78ba1d38,be8ca378-bc74-46c1-b922-e7f552486ede,22a229bd-c7a2-49d0-9eaa-e1fc888daac6
@@ -114,6 +112,7 @@ nodes:
     search_result_list: ${search_doc.output}
     ally: ally
     language: ${inputs.language}
+  aggregation: false
 - name: python_text_embedding
   type: python
   source:

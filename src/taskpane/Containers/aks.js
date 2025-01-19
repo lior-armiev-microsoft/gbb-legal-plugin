@@ -38,7 +38,12 @@ export async function ask() {
   try {  
       // Execute Word API call  
       await Word.run(async (context) => {  
-          const response = await fetchData(pfendpoint, query, language, JSON.parse(localStorage.getItem('groups')));  
+          
+          // convert JSON.parse(localStorage.getItem('groups')) to string
+          const groups = JSON.parse(localStorage.getItem('groups')).toString();
+
+          const response = await fetchData(pfendpoint, query, language, groups);  
+          console.log("Response: ", response);
           const data = await response.json();  
           displaySearchResults(data.answer);  
       });  
@@ -86,7 +91,8 @@ function displaySearchResults(data) {
       container.innerHTML = ""; // Clear previous content  
   }  
 
-  console.log("Data: ", data);
+  console.log("Data: ", data)
+  console.log(typeof(data))
 
   // Create and append elements to display results  
   const header = createHeader();  

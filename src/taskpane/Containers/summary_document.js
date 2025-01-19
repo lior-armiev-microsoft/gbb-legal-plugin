@@ -276,7 +276,7 @@ function displaySummaryData1(policyData) {
             sectionDiv.style.borderRadius = "10px"; // Optional: Make it rounded for better visibility
             sectionDiv.style.padding = "10px"; // Optional: Add padding inside the border
         }
-
+        console.log(sectionDiv.id);
         // Create the header with title
         const headerDiv = document.createElement("div");
         headerDiv.classList.add("doc-summary-header");

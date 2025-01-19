@@ -54,7 +54,7 @@
                 },
                 "policy_list": {
                     "type": [
-                        "list"
+                        "object"
                     ]
                 },
                 "ally": {
@@ -86,7 +86,7 @@
                 },
                 "groups": {
                     "type": [
-                        "list"
+                        "string"
                     ]
                 }
             },
@@ -118,7 +118,7 @@
                 },
                 "input5": {
                     "type": [
-                        "string"
+                        "object"
                     ]
                 }
             },
@@ -167,7 +167,7 @@
                 },
                 "groups": {
                     "type": [
-                        "list"
+                        "string"
                     ]
                 }
             },
@@ -228,7 +228,7 @@
                 },
                 "groups": {
                     "type": [
-                        "object"
+                        "string"
                     ]
                 },
                 "searchconnection": {

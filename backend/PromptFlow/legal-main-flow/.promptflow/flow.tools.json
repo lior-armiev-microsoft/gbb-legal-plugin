@@ -248,7 +248,7 @@
         },
         "input5": {
           "type": [
-            "string"
+            "object"
           ]
         }
       },

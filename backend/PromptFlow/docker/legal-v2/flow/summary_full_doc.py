@@ -45,8 +45,8 @@ def python_tool(input_text: str, ally:CustomConnection) -> object:
                 policy = get_policyinfo(policyid,ally)
                 policylist.append(policy)
             list.append({"title": result["title"], "summary": result["summary"], "keyphrases": result["keyphrases"], "summary": result["summary"], "isCompliant": result["isCompliant"], "CompliantCollection": result["CompliantCollection"], "NonCompliantCollection": result["NonCompliantCollection"], "NonCompliantPolicies": policylist})           
-                
-        list.append({"title": result["title"], "summary": result["summary"], "keyphrases": result["keyphrases"], "summary": result["summary"], "isCompliant": result["isCompliant"], "CompliantCollection": result["CompliantCollection"], "NonCompliantCollection": result["NonCompliantCollection"]})
+        else:    
+            list.append({"title": result["title"], "summary": result["summary"], "keyphrases": result["keyphrases"], "summary": result["summary"], "isCompliant": result["isCompliant"], "CompliantCollection": result["CompliantCollection"], "NonCompliantCollection": result["NonCompliantCollection"]})
     print(list)
     return list
 

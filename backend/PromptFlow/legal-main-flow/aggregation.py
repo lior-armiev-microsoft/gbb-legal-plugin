@@ -6,7 +6,7 @@ import logging
 # Adding type to arguments and return value will help the system show the types properly
 # Please update the function name/signature per need
 @tool
-def my_python_tool(input1: dict, input2: dict, input3: dict, input4: dict, input5: str) -> dict:
+def my_python_tool(input1: object, input2: object, input3: object, input4: object, input5: object) -> object:
     #check witch input is not null and return it
     
     if input1:
