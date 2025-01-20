@@ -61,27 +61,7 @@ Use the following format for the output:
       "iscompliant": "yes/no (english)",  
       "suggested_correction": "Suggested correction if needed (in the selected language)",  
       "relevant_policy_item": "Text of the relevant policy item (in the selected language)",  
-      "corrected_text": ["Prompt Rule for Correcting and Suggesting Variants of Legal Text:
-
-Objective:
-
-Correct the provided legal text if needed, ensuring compliance with policy restrictions.
-Offer three alternative versions of the text, maintaining the original structure and numbering.
-Guidelines for Text Correction and Suggestions:
-
-Minimal Change Version (dont write Minimal Change Version it in the response):
-Make only necessary corrections to ensure compliance with policy restrictions, keeping changes to a minimum.
-Maintain the original order, structure, and numbering of the text.
-Two Alternative Variants (dont write Two Alternative Variants it in the response):
-Provide two additional versions of the text that convey the same meaning while ensuring compliance with policy restrictions.
-These versions may incorporate more substantial revisions but must still preserve the original structure and numbering.
-Formatting Requirements:
-
-If the original text includes paragraphs or numbered clauses (using letters or numbers), retain this format in all versions.
-Ensure each version comprises three paragraphs unless compliance requires the removal of a paragraph. In such cases, adjust the numbering accordingly.
-Language Consideration:
-Make corrections and suggestions in the language of the original text.
-"]
+      "corrected_text": ["Corrected text if needed, with !three! suggestions for the user, based on the user original text, if the selected text is long with paragraphs, make sure to keep the original format and make only the surgicale changes needed (in the selected language)"]
     }  
   ]  
 }  

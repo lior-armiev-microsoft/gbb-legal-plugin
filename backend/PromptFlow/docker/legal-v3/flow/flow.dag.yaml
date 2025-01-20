@@ -9,14 +9,10 @@ inputs:
   question:
     type: string
     is_chat_input: true
-    default: "(a)\tThe Contract shall be governed by and construed in accordance
-      with the laws of Singapore, without reference to its conflict of laws
-      rules.    (b)\tFor Purchase Orders issued to Sellers incorporated in
-      Singapore, unless otherwise specified in the Purchase Order, the parties
-      submit to the jurisdiction of the courts of Singapore. "
+    default: what is the governing law?
   query_type:
     type: int
-    default: 2
+    default: 3
   group:
     type: list
     default:
