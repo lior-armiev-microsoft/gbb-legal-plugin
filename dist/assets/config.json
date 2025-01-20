@@ -1,7 +1,0 @@
-{
-    "prompt-flow-endpoint" : "https://allytestgbb1.yellowsea-6a7b1fca.westeurope.azurecontainerapps.io/score",
-    "config-prompt-flow-endpoint" : "http://localhost:8082/score",
-    "clientId" : "692fe6c3-17fa-42a3-9c03-55f5227942e0",
-    "authority": "https://login.microsoftonline.com/common",
-    "sso-enabled": false
-}
