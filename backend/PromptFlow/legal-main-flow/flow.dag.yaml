@@ -155,3 +155,9 @@ nodes:
   activate:
     when: ${inputs.query_type}
     is: 99
+- name: prompt_node_9e7r
+  type: prompt
+  source:
+    type: code
+    path: prompt_node_9e7r.jinja2
+  inputs: {}

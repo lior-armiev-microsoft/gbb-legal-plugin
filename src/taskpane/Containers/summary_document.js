@@ -486,14 +486,35 @@ if (Array.isArray(section.NonCompliantPolicies) && section.NonCompliantPolicies.
     summaryText.style.display = (summaryText.style.display === "none") ? "block" : "none";
 
     const docsummaryparagraphstitle = document.getElementById("doc-summary-paragraphs-title");
-    docsummaryparagraphstitle.style.display = (docsummaryparagraphstitle.style.display === "none") ? "block" : "none";
-
-    policyData.Items.forEach((item, index) => {
-      const contentDiv = document.getElementById(`doc-summary-item-${index}`);
-      console.log(contentDiv);
-      contentDiv.style.display = (contentDiv.style.display === "none") ? "block" : "none";
+    if (docsummaryparagraphstitle) {
+        docsummaryparagraphstitle.style.display = (docsummaryparagraphstitle.style.display === "none") ? "block" : "none";
+    } else {
+        console.error("Element with ID 'docsummaryparagraphstitle' not found.");
     }
-  )
-   
-  document.getElementById("doc-summary-result-title").textContent = summaryText.style.display === "none" ? "▼ Document Summary" : " ► Document Summary";
-  }    
+
+    if (policyData && policyData.Items) {
+        policyData.Items.forEach((item, index) => {
+            const contentDiv = document.getElementById(`doc-summary-item-${index}`);
+            if (contentDiv) {
+                contentDiv.style.display = "none";
+            } else {
+                console.error(`Element with ID 'doc-summary-item-${index}' not found.`);
+            }
+        });
+    } else {
+        console.error("policyData or policyData.Items is undefined.");
+    }
+
+    const sectionsSummaryList = document.getElementById("sections-summary-list");
+    if (sectionsSummaryList) {
+        sectionsSummaryList.style.display = "none";
+        const sectionContainers = sectionsSummaryList.getElementsByClassName("section-container");
+        for (let i = 0; i < sectionContainers.length; i++) {
+            sectionContainers[i].style.display = "none";
+        }
+    } else {
+        console.error("Element with ID 'sections-summary-list' not found.");
+    }
+
+    document.getElementById("doc-summary-result-title").textContent = summaryText.style.display === "none" ? "▼ Document Summary" : " ► Document Summary";
+}

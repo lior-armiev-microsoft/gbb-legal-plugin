@@ -369,6 +369,17 @@
       },
       "source": "check_index.py",
       "function": "my_python_tool"
+    },
+    "prompt_node_9e7r.jinja2": {
+      "type": "prompt",
+      "inputs": {
+        "text": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "prompt_node_9e7r.jinja2"
     }
   }
 }

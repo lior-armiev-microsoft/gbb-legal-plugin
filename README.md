@@ -207,6 +207,11 @@ This plugin is free to use and modify by anyone. The GitHub repository is also f
 - **Lior Armiev** – Senior Technical Specialist​ – AI Global Black Belt, EMEA    
 - **Andrew Mackay** – AI Director – Global Black Belts, CEMA 
 
+## Demo
+
+[![IMAGE ALT TEXT HERE](./files/youtube.png)](https://www.youtube.com/watch?v=-powTAGvKu0)
+
+
 ## Contributing  
   
 We welcome contributions from the community. Feel free to create a pull request or leave comments. All contributions will be reviewed. 
