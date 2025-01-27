@@ -13,6 +13,10 @@ __Ally – AI Contract Assistant__  is designed with flexibility and scalability
 
 By leveraging this plugin, legal professionals can significantly reduce the time spent on manual tasks, thereby increasing overall productivity and enabling a sharper focus on delivering value to clients. Embrace the future of legal technology with a solution that combines Microsoft’s best-of-breed offerings to redefine efficiency and efficacy in legal contract analysis and review. 
 
+## Demo
+
+[![IMAGE ALT TEXT HERE](./files/youtube.png)](https://www.youtube.com/watch?v=-powTAGvKu0)
+
 ### Key Features 
 
 - Efficient Contract Analysis & Review: Streamline the process of contract review with AI-driven summarization and analysis. 
@@ -206,11 +210,6 @@ This plugin is free to use and modify by anyone. The GitHub repository is also f
 - **Esther Dediashvili** – Senior Solution Specialist – AI Global Black Belt, EMEA    
 - **Lior Armiev** – Senior Technical Specialist​ – AI Global Black Belt, EMEA    
 - **Andrew Mackay** – AI Director – Global Black Belts, CEMA 
-
-## Demo
-
-[![IMAGE ALT TEXT HERE](./files/youtube.png)](https://www.youtube.com/watch?v=-powTAGvKu0)
-
 
 ## Contributing  
   
